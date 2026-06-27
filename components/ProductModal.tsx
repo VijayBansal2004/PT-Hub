@@ -1,0 +1,243 @@
+"use client";
+
+import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  X,
+  Play,
+  Pause,
+  VolumeX,
+  Volume2,
+  Star,
+  Check,
+  Heart,
+  ShoppingBag,
+} from "lucide-react";
+import { Product } from "@/app/data";
+
+interface ProductModalProps {
+  product: Product | null;
+  onClose: () => void;
+  isFavorite: boolean;
+  onToggleFavorite: () => void;
+  onBuyNow: () => void;
+}
+
+export default function ProductModal({
+  product,
+  onClose,
+  isFavorite,
+  onToggleFavorite,
+  onBuyNow,
+}: ProductModalProps) {
+  const [isVideoMuted, setIsVideoMuted] = useState(true);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Sync internal state when product changes
+  useEffect(() => {
+    if (product) {
+      setIsVideoMuted(true);
+      setIsVideoPlaying(true);
+    }
+  }, [product]);
+
+  return (
+    <AnimatePresence>
+      {product && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10">
+          {/* Blur Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-black/70 dark:bg-black/85 backdrop-blur-md"
+          />
+
+          {/* Modal Container Card */}
+          <motion.div
+            layoutId={`card-${product.id}`}
+            className="relative z-10 w-full max-w-5xl md:overflow-hidden rounded-3xl bg-white dark:bg-zinc-950 shadow-2xl border border-zinc-200/80 dark:border-zinc-800/80 h-fit md:h-[80vh] max-h-[750px] flex flex-col md:flex-row transition-colors duration-300"
+            style={{ borderRadius: 28 }}>
+            {/* Close Button */}
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 md:top-5 md:right-5 z-20 flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full bg-zinc-100/80 dark:bg-zinc-900/80 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white shadow-md hover:scale-110 active:scale-95 transition-all backdrop-blur-md cursor-pointer">
+              <X className="h-4 w-4 md:h-5 md:w-5" />
+            </button>
+
+            {/* Inner Content Container */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.25 }}
+              className="flex flex-col md:flex-row w-full h-full">
+              {/* Left Side Media Section: Only video lookbook */}
+              <div className="w-full md:w-1/2 p-2 md:p-8 flex flex-col border-b md:border-b-0 md:border-r border-zinc-100 dark:border-zinc-900">
+                {/* Main Media Preview Box */}
+                <div className="relative aspect-square md:aspect-auto md:flex-grow h-full w-full overflow-hidden rounded-3xl md:rounded-2xl bg-zinc-900 flex items-center justify-center shadow-inner group/video">
+                  <video
+                    key={product.id}
+                    ref={videoRef}
+                    src={product.video}
+                    autoPlay
+                    loop
+                    muted={isVideoMuted}
+                    playsInline
+                    onPlay={() => setIsVideoPlaying(true)}
+                    onPause={() => setIsVideoPlaying(false)}
+                    className="h-full w-full object-cover bg-zinc-950"
+                  />
+
+                  {/* Video & Category Badges */}
+                  <div className="absolute top-3 left-3 z-20 flex flex-wrap gap-2 pointer-events-none">
+                    {/* Category Badge (Mobile Only) */}
+                    <span className="inline-flex md:hidden items-center rounded-full bg-indigo-600 px-3 py-1.5 text-[10px] font-semibold md:font-bold text-white shadow-lg shadow-indigo-600/30">
+                      {product.category}
+                    </span>
+                  </div>
+
+                  {/* Big Play/Pause Toggle Button in the Center */}
+                  <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                    <button
+                      onClick={() => {
+                        if (videoRef.current) {
+                          if (videoRef.current.paused) {
+                            videoRef.current.play();
+                          } else {
+                            videoRef.current.pause();
+                          }
+                        }
+                      }}
+                      className={`flex h-16 w-16 items-center justify-center rounded-full bg-black/50 hover:bg-black/70 text-white backdrop-blur-md transition-all duration-300 shadow-2xl border border-white/10 cursor-pointer pointer-events-auto hover:scale-110 active:scale-95 ${
+                        isVideoPlaying
+                          ? "opacity-0 group-hover/video:opacity-100 scale-90 group-hover/video:scale-100"
+                          : "opacity-100 scale-100"
+                      }`}
+                      aria-label={
+                        isVideoPlaying ? "Pause video" : "Play video"
+                      }>
+                      {isVideoPlaying ? (
+                        <Pause className="h-7 w-7 fill-white text-white" />
+                      ) : (
+                        <Play className="h-7 w-7 fill-white text-white translate-x-0.5" />
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Video specific controls */}
+                  <div className="absolute bottom-4 right-4 z-10 flex gap-2">
+                    <button
+                      onClick={() => setIsVideoMuted(!isVideoMuted)}
+                      className="flex h-9 w-9 items-center justify-center rounded-full bg-black/60 hover:bg-black/80 text-white backdrop-blur-md transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95">
+                      {isVideoMuted ? (
+                        <VolumeX className="h-4.5 w-4.5" />
+                      ) : (
+                        <Volume2 className="h-4.5 w-4.5" />
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side Info Section */}
+              <div className="w-full md:w-1/2 p-3 md:p-8 flex flex-col justify-between overflow-y-auto max-h-[45vh] md:max-h-full font-sans">
+                <div>
+                  {/* Category Tag */}
+                  <span className="hidden md:inline-flex items-center rounded-full bg-indigo-50 dark:bg-indigo-950/50 px-2.5 py-0.5 text-xs font-semibold text-indigo-600 dark:text-indigo-400 border border-indigo-200/10">
+                    {product.category}
+                  </span>
+
+                  {/* Title & Price */}
+                  <div className="mt-3 flex flex-col md:flex-row items-start justify-between gap-0 md:gap-4">
+                    <h2 className="text-lg md:text-2xl font-bold md:font-extrabold text-zinc-900 dark:text-white tracking-tight flex-1">
+                      {product.name}
+                    </h2>
+                    <div className="flex items-center gap-3 shrink-0">
+                      <span className="text-xl md:text-2xl font-bold md:font-black text-indigo-600 dark:text-indigo-400">
+                        ₹{product.price.toFixed(2)}
+                      </span>
+                      {/* Favorite Button next to Price */}
+                      <button
+                        onClick={onToggleFavorite}
+                        className={`inline-block md:hidden p-2 rounded-full border transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer ${
+                          isFavorite
+                            ? "bg-pink-500/10 text-pink-500 border-pink-500/30"
+                            : "bg-zinc-50 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500 border-zinc-200 dark:border-zinc-800 hover:text-zinc-600 dark:hover:text-zinc-400"
+                        }`}
+                        aria-label={
+                          isFavorite
+                            ? "Remove from favorites"
+                            : "Add to favorites"
+                        }>
+                        <Heart
+                          className={`h-4.5 w-4.5 md:h-5 md:w-5 ${isFavorite ? "fill-pink-500 text-pink-500" : ""}`}
+                        />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Rating summary */}
+                  <div className="mt-2.5 flex items-center gap-1">
+                    <div className="flex items-center">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`h-3 w-3 md:h-4.5 md:w-4.5 ${
+                            i < Math.floor(product.rating)
+                              ? "fill-amber-400 text-amber-400"
+                              : "text-zinc-300 dark:text-zinc-750"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300 ml-1">
+                      {product.rating}
+                    </span>
+                    <span className="text-xs text-zinc-400">
+                      ({product.reviewsCount} verified reviews)
+                    </span>
+                  </div>
+
+                  <div className="border-b border-zinc-100 dark:border-zinc-900 md:my-4 my-1" />
+
+                  {/* Description text */}
+                  <p className="text-xs md:text-sm text-zinc-600 dark:text-zinc-300 md:leading-relaxed">
+                    {product.description}
+                  </p>
+                </div>
+
+                {/* Bottom Action buttons */}
+                <div className="mt-4 md:mt-8 pt-4 border-t border-zinc-100 dark:border-zinc-900 flex flex-col sm:flex-row gap-3">
+                  {/* Buy now trigger */}
+                  <button
+                    onClick={onBuyNow}
+                    className="flex-1 py-3 px-6 rounded-full bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white font-bold text-sm shadow-lg shadow-indigo-600/30 hover:shadow-indigo-600/50 hover:scale-[1.02] active:scale-95 transition-all text-center flex items-center justify-center gap-2 cursor-pointer">
+                    <ShoppingBag className="h-4.5 w-4.5" />
+                    Buy Now
+                  </button>
+
+                  {/* Add to favorites trigger */}
+                  <button
+                    onClick={onToggleFavorite}
+                    className={`hidden md:flex py-3 px-6 rounded-full border font-bold text-sm items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all cursor-pointer ${
+                      isFavorite
+                        ? "bg-pink-500/10 text-pink-500 border-pink-500/30 hover:bg-pink-500/20"
+                        : "bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    }`}>
+                    <Heart
+                      className={`h-4.5 w-4.5 ${isFavorite ? "fill-pink-500 text-pink-500" : ""}`}
+                    />
+                    {isFavorite ? "Favorited" : "Add to Favourites"}
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+}
