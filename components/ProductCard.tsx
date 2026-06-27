@@ -85,7 +85,7 @@ export default function ProductCard({
 
           {/* Review Stats */}
           <div className="mt-1.5 flex items-center gap-1">
-            <Star className="h-4 w-4 fill-blue-500 text-blue-500" />
+            <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
             <span className="text-xs font-bold text-zinc-700">
               {product.rating}
             </span>

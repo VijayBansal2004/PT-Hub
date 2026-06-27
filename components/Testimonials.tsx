@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Star, MessageSquare } from "lucide-react";
-import Image from "next/image";
 
 interface Testimonial {
   id: string;
@@ -119,6 +118,13 @@ export default function Testimonials() {
 }
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
+  const initials = testimonial.name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2);
+
   return (
     <div className="w-[340px] sm:w-[380px] shrink-0 p-6 rounded-2xl border border-zinc-200/50 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 shadow-sm flex flex-col justify-between hover:shadow-md hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300 backdrop-blur-sm">
       <div>
@@ -126,7 +132,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-0.5">
             {[...Array(testimonial.rating)].map((_, i) => (
-              <Star key={i} className="h-4 w-4 fill-blue-500 text-blue-500" />
+              <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
             ))}
           </div>
           <span className="text-[10px] font-bold text-blue-600 bg-blue-500/10 px-2 py-0.5 rounded-full border border-blue-500/10">
@@ -142,14 +148,8 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 
       {/* Author Profile */}
       <div className="flex items-center gap-3 border-t border-zinc-100 dark:border-zinc-800/60 pt-4">
-        <div className="relative h-10 w-10 overflow-hidden rounded-full ring-1 ring-zinc-200 dark:ring-zinc-800">
-          <Image
-            src={testimonial.avatar}
-            alt={testimonial.name}
-            fill
-            className="object-cover"
-            sizes="40px"
-          />
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-sky-500 text-white text-xs font-extrabold shadow-sm select-none">
+          {initials}
         </div>
         <div>
           <h4 className="text-sm font-bold text-zinc-900 dark:text-white leading-none">
