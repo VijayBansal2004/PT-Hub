@@ -16,69 +16,63 @@ interface Testimonial {
 const TESTIMONIALS: Testimonial[] = [
   {
     id: "t1",
-    name: "Sarah Jenkins",
-    role: "Jewellery Collector",
-    avatar:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80",
+    name: "Harpreet Kaur",
+    role: "Housewife (Handiaya Bazar, Barnala)",
+    avatar: "",
     rating: 5,
     content:
-      "The Aura Gold Bangle is stunning. The craftsmanship is highly detailed, and it has an incredible luxury weight. It adds the perfect elegance to my outfits.",
-    itemBought: "Aura Gold Bangle",
+      "Mera sona te chandi de gahne bilkul naye varge ho gaye! Eh sonic cleaner bhut vadiya kam karda hai. Barnala vich aida di cheez pehli var dekhi hai, ghare baithe hi safai ho jandi.",
+    itemBought: "Sonic-Wash Cleaner",
   },
   {
     id: "t2",
-    name: "David Chen",
-    role: "Tech Enthusiast",
-    avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80",
+    name: "Manpreet Kaur",
+    role: "Boutique Owner (Sadar Bazar, Barnala)",
+    avatar: "",
     rating: 5,
     content:
-      "Minimalism and utility combined. The Mag-Charge Desk Base is walnut and aluminum, heavy, and charges rapidly. It makes my smart workspace look futuristic.",
-    itemBought: "Mag-Charge Desk Base",
+      "Sade boutique lai eh traditional Punjabi suits da kapda bhut ghaint te unique aa ji. Customer bhut khush hunde ne fitting te fabric dekh ke. PT Hub imported stuff lai best hai.",
+    itemBought: "Traditional Suit Fabric",
   },
   {
     id: "t3",
-    name: "Elena Rostova",
-    role: "Lifestyle Blogger",
-    avatar:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80",
+    name: "Rajwant Kaur",
+    role: "Government Teacher (KC Road, Barnala)",
+    avatar: "",
     rating: 5,
     content:
-      "I am absolutely obsessed with the Jade Pendant Necklace. The stone quality is pristine and it has a beautiful premium finish. Highly recommend PT Hub imports!",
-    itemBought: "Imperial Jade Pendant",
+      "School te ghare copy checking te laptop use krde hoye mobile charge krna bhut aasan ho gya. Walnut wood da design bhut premium lagda. Bilkul value for money product hai.",
+    itemBought: "Mag-Charge Desk Base",
   },
   {
     id: "t4",
-    name: "Marcus Miller",
-    role: "Smart Home Enthusiast",
-    avatar:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=80",
+    name: "Baljit Kaur",
+    role: "Cloth Tailor (Dhula Road, Barnala)",
+    avatar: "",
     rating: 5,
     content:
-      "This Automatic Rice Dispenser with a digital scaling cup is a game changer for my kitchen. Super functional Chinese smart kitchen utility. Sturdy and precise.",
-    itemBought: "Smart Culinary Rice Dispenser",
+      "Main apne suit designs naal match krn lai eh jade pendant mangvaeya si. Esdi chamak te stone quality lajawab hai ji. Customer dekhde hi kehande ne - bhut sohna lagda!",
+    itemBought: "Imperial Jade Pendant",
   },
   {
     id: "t5",
-    name: "Sophia Martinez",
-    role: "Product Reviewer",
-    avatar:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&h=150&q=80",
+    name: "Amritpal Kaur",
+    role: "Housewife (Club Road, Barnala)",
+    avatar: "",
     rating: 5,
     content:
-      "The Ultra-Sonic Jewellery Cleaner from PT Hub works like a charm. Cleans my premium rings and watches in minutes. A must-have gadget for any jewellery lover.",
-    itemBought: "Sonic-Wash Jewellery Cleaner",
+      "Kitchen vich chawal te dalan sambhalna bhut saukha ho gya. scaling cup naal bilkul sahi naap milda. Sade Barnala de gharan vich aidi automatic chiz di bhut lod si!",
+    itemBought: "Culinary Rice Dispenser",
   },
   {
     id: "t6",
-    name: "Lucas Vance",
-    role: "Gadget Collector",
-    avatar:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=150&h=150&q=80",
+    name: "Jasvir Kaur",
+    role: "Boutique Designer (Patiala Road, Barnala)",
+    avatar: "",
     rating: 5,
     content:
-      "I bought the Folding Desk Fan with built-in power bank. Extremely useful, portable, and runs silent. PT Hub sources the best high-quality useful Chinese gadgets.",
-    itemBought: "3-in-1 Smart Folding Fan",
+      "Embroidery da kamm bhut hi bariki naal kita hoya hai ji. Fabric te stitching di quality no. 1 aa. Main apne boutique de special orders lai PT Hub to hi shopping krdi haan.",
+    itemBought: "Designer Embroidered Suit",
   },
 ];
 

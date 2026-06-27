@@ -4,6 +4,9 @@ import React from "react";
 import Logo from "./Logo";
 
 export default function Footer() {
+  const phone = process.env.NEXT_PUBLIC_CONTACT_PHONE || "+91 94172 12422";
+  const whatsapp = process.env.NEXT_PUBLIC_CONTACT_WHATSAPP || "919417212422";
+  const cleanPhone = phone.replace(/\s+/g, "");
   return (
     <footer className="mt-auto border-t border-zinc-200/50 bg-white text-zinc-600 transition-colors duration-300 w-full font-sans py-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -39,13 +42,6 @@ export default function Footer() {
                     Luxury Jewellery
                   </a>
                 </li>
-                <li>
-                  <a
-                    href="/favorites"
-                    className="hover:text-blue-600 transition-colors">
-                    My Favourites
-                  </a>
-                </li>
               </ul>
             </nav>
           </div>
@@ -79,7 +75,7 @@ export default function Footer() {
             {/* WhatsApp */}
             <a
               aria-label="WhatsApp"
-              href="https://wa.me/919417212422"
+              href={`https://wa.me/${whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white hover:bg-zinc-50 hover:text-blue-600 transition-all hover:scale-105 shadow-sm cursor-pointer">
@@ -91,7 +87,7 @@ export default function Footer() {
             {/* Phone Call */}
             <a
               aria-label="Phone Call"
-              href="tel:+919417212422"
+              href={`tel:${cleanPhone}`}
               className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white hover:bg-zinc-50 hover:text-blue-600 transition-all hover:scale-105 shadow-sm cursor-pointer">
               <svg
                 className="h-5 w-5 fill-none stroke-current"

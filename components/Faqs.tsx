@@ -14,33 +14,34 @@ interface FAQItem {
 const FAQ_QUESTIONS: FAQItem[] = [
   {
     id: "item-1",
-    title: "What is PT Hub?",
+    title: "What does PT Hub specialize in?",
     content:
-      "PT Hub is a curated lifestyle boutique offering premium essentials, accessories, kids items, and home utilities. We focus on clean minimalism, high-end materials, and functional design.",
+      "PT Hub is a specialized boutique based in Barnala, Punjab, dealing in highly useful Chinese smart gadgets, home utilities, premium luxury jewellery, and high-quality unstitched ladies' suit fabrics/dress materials.",
   },
   {
     id: "item-2",
-    title: "How long does shipping take?",
+    title: "How do I place an order?",
     content:
-      "We process all orders within 24 hours. Standard shipping takes 3-5 business days, while express lookbook shipping takes 1-2 business days. Tracking details are sent automatically upon dispatch.",
+      "Simply browse our catalog and click the 'Buy Now' button on any product. This will instantly redirect you to our WhatsApp DM with a pre-filled message of the product details. We will confirm your order and discuss shipping options directly in the chat.",
   },
   {
     id: "item-3",
-    title: "What is your return policy?",
+    title: "How do you handle delivery and payments?",
     content:
-      "We support 30-day hassle-free returns. If you are not completely satisfied with your purchase, you can return any unworn, unused items in their original packaging for a full refund.",
+      "Since all orders are finalized directly in our WhatsApp DM, we arrange custom delivery options. We accept online UPI payments, bank transfers, and Cash on Delivery (COD) for Barnala and neighboring regions. No complex online checkouts or payment gateways needed!",
   },
   {
     id: "item-4",
-    title: "Are PT Hub products sustainably sourced?",
+    title:
+      "Can I see real photos/videos of unstitched suit materials before buying?",
     content:
-      "Yes, sustainability is at our core. Our leather goods are vegetable-tanned, apparel items are crafted from organic mulberry silk and cotton, and utility items are constructed from genuine wood and aluminum.",
+      "Yes, absolutely! Once you connect with us in our WhatsApp DM, we can send you real-time photos, fabric videos, and answer any texture or quality queries you have before confirming.",
   },
   {
     id: "item-5",
-    title: "How do I register a warranty for my charger/watch?",
+    title: "What kinds of gadgets and jewellery do you offer?",
     content:
-      "All electronics (chargers, chronograph watches) automatically come with a 2-year warranty from the date of purchase. You do not need to register separately; your order receipt acts as proof.",
+      "We offer innovative smart Chinese utilities (like sonic cleaners, automated dispensers, compact heaters) and premium handcrafted traditional and modern jewellery. Since we coordinate in WhatsApp, you can even request custom items not listed on the catalog!",
   },
 ];
 
@@ -100,13 +101,6 @@ export default function Faqs() {
           );
         })}
       </div>
-
-      <p className="text-center sm:text-left text-xs sm:text-sm text-zinc-500 font-medium">
-        Can&apos;t find what you&apos;re looking for? Contact our{" "}
-        <a className="text-blue-600 hover:underline font-bold" href="#support">
-          customer support team
-        </a>
-      </p>
     </section>
   );
 }

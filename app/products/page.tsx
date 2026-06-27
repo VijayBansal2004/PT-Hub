@@ -24,10 +24,10 @@ function ProductsContent() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [favorites, setFavorites] = useState<string[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  
+
   // Pagination State
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const ITEMS_PER_PAGE = 8;
+  const ITEMS_PER_PAGE = 36;
 
   // Initialize selectedCategory from searchParams when it loads
   useEffect(() => {
@@ -87,22 +87,26 @@ function ProductsContent() {
 
   // Filter & Sort products using memoization and standard array methods
   const filteredProducts = useMemo(() => {
-    return products.filter((product) => {
-      const matchesCategory =
-        selectedCategory === "All" || product.category === selectedCategory;
-      const matchesSearch =
-        product.name.toLowerCase().includes(searchQuery.trim().toLowerCase()) ||
-        product.description
-          .toLowerCase()
-          .includes(searchQuery.trim().toLowerCase());
-      return matchesCategory && matchesSearch;
-    }).sort((a, b) => {
-      if (sortBy === "price-asc") return a.price - b.price;
-      if (sortBy === "price-desc") return b.price - a.price;
-      if (sortBy === "rating") return b.rating - a.rating;
-      if (sortBy === "reviews") return b.reviewsCount - a.reviewsCount;
-      return 0;
-    });
+    return products
+      .filter((product) => {
+        const matchesCategory =
+          selectedCategory === "All" || product.category === selectedCategory;
+        const matchesSearch =
+          product.name
+            .toLowerCase()
+            .includes(searchQuery.trim().toLowerCase()) ||
+          product.description
+            .toLowerCase()
+            .includes(searchQuery.trim().toLowerCase());
+        return matchesCategory && matchesSearch;
+      })
+      .sort((a, b) => {
+        if (sortBy === "price-asc") return a.price - b.price;
+        if (sortBy === "price-desc") return b.price - a.price;
+        if (sortBy === "rating") return b.rating - a.rating;
+        if (sortBy === "reviews") return b.reviewsCount - a.reviewsCount;
+        return 0;
+      });
   }, [selectedCategory, sortBy, searchQuery, products]);
 
   // Reset pagination to first page when search filters change
@@ -116,6 +120,13 @@ function ProductsContent() {
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     return filteredProducts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
   }, [filteredProducts, currentPage]);
+
+  const getPageNumbers = () => {
+    if (totalPages <= 4) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+    return [1, 2, "...", totalPages - 1, totalPages];
+  };
 
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900 transition-colors duration-300 font-sans flex flex-col animate-fade-in">
@@ -133,11 +144,11 @@ function ProductsContent() {
           <div className="h-72 w-72 rounded-full bg-sky-300 animate-pulse" />
           <div className="h-96 w-96 rounded-full bg-blue-600 ml-12 animate-bounce duration-10000" />
         </div>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center sm:text-left">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl bg-gradient-to-r from-zinc-900 via-blue-950 to-blue-800 bg-clip-text text-transparent">
             Explore All Products
           </h1>
-          <p className="mt-2 max-w-xl text-lg text-zinc-500">
+          <p className="mt-2 max-w-xl text-lg text-zinc-500 mx-auto">
             Browse our curated collection of useful smart Chinese imports, innovative daily utilities, and premium handcrafted jewellery.
           </p>
         </div>
@@ -205,30 +216,39 @@ function ProductsContent() {
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
                 className="h-9 w-9 flex items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-500 transition-all cursor-pointer hover:bg-zinc-50 disabled:opacity-40 disabled:pointer-events-none active:scale-95"
-                title="Previous Page"
-              >
+                title="Previous Page">
                 <ChevronLeft className="h-4.5 w-4.5" />
               </button>
 
               {/* Number Buttons */}
-              <div className="flex items-center gap-1.5">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <button
-                    key={page}
-                    onClick={() => {
-                      setCurrentPage(page);
-                      window.scrollTo({ top: 0, behavior: "smooth" });
-                    }}
-                    className={cn(
-                      "h-9 w-9 text-xs font-bold rounded-full transition-all cursor-pointer",
-                      currentPage === page
-                        ? "bg-blue-600 text-white shadow-md shadow-blue-600/20 scale-105"
-                        : "border border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50"
-                    )}
-                  >
-                    {page}
-                  </button>
-                ))}
+              <div className="hidden sm:flex items-center gap-1.5">
+                {getPageNumbers().map((page, idx) => {
+                  if (page === "...") {
+                    return (
+                      <span
+                        key={`ellipsis-${idx}`}
+                        className="px-2 text-zinc-400 font-bold select-none">
+                        ...
+                      </span>
+                    );
+                  }
+                  return (
+                    <button
+                      key={page}
+                      onClick={() => {
+                        setCurrentPage(page as number);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                      className={cn(
+                        "h-9 w-9 text-xs font-bold rounded-full transition-all cursor-pointer",
+                        currentPage === page
+                          ? "bg-blue-600 text-white shadow-md shadow-blue-600/20 scale-105"
+                          : "border border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50",
+                      )}>
+                      {page}
+                    </button>
+                  );
+                })}
               </div>
 
               {/* Next Page */}
@@ -239,8 +259,7 @@ function ProductsContent() {
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
                 className="h-9 w-9 flex items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-500 transition-all cursor-pointer hover:bg-zinc-50 disabled:opacity-40 disabled:pointer-events-none active:scale-95"
-                title="Next Page"
-              >
+                title="Next Page">
                 <ChevronRight className="h-4.5 w-4.5" />
               </button>
             </div>
@@ -248,8 +267,8 @@ function ProductsContent() {
             {/* Pagination stats status text */}
             <span className="text-xs text-zinc-400 font-medium">
               Showing {(currentPage - 1) * ITEMS_PER_PAGE + 1} -{" "}
-              {Math.min(currentPage * ITEMS_PER_PAGE, filteredProducts.length)} of{" "}
-              {filteredProducts.length} items
+              {Math.min(currentPage * ITEMS_PER_PAGE, filteredProducts.length)}{" "}
+              of {filteredProducts.length} items
             </span>
           </div>
         )}
@@ -268,7 +287,8 @@ function ProductsContent() {
         onBuyNow={() => {
           if (selectedProduct) {
             const message = `Hello! I would like to purchase the *${selectedProduct.name}* (${selectedProduct.category}) for *$${selectedProduct.price.toFixed(2)}*.`;
-            const whatsappUrl = `https://wa.me/919417212422?text=${encodeURIComponent(message)}`;
+            const whatsappNum = process.env.NEXT_PUBLIC_CONTACT_WHATSAPP || "919417212422";
+            const whatsappUrl = `https://wa.me/${whatsappNum}?text=${encodeURIComponent(message)}`;
             toast.success("Redirecting to WhatsApp Checkout...", {
               description: `Opening chat to buy ${selectedProduct.name}.`,
               icon: "🛍️",
@@ -288,22 +308,19 @@ function ProductsContent() {
       <FloatingContact />
 
       {/* Shadcn Sonner Toaster */}
-      <Toaster
-        richColors
-        position="bottom-right"
-        theme="light"
-      />
+      <Toaster richColors position="bottom-right" theme="light" />
     </div>
   );
 }
 
 export default function ProductsPage() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-zinc-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-      </div>
-    }>
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-zinc-50">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        </div>
+      }>
       <ProductsContent />
     </Suspense>
   );

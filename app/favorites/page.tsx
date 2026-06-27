@@ -145,7 +145,8 @@ export default function FavoritesPage() {
           onBuyNow={() => {
             if (selectedProduct) {
               const message = `Hello! I would like to purchase the *${selectedProduct.name}* (${selectedProduct.category}) for *$${selectedProduct.price.toFixed(2)}*.`;
-              const whatsappUrl = `https://wa.me/15550199?text=${encodeURIComponent(message)}`;
+              const whatsappNum = process.env.NEXT_PUBLIC_CONTACT_WHATSAPP || "919417212422";
+              const whatsappUrl = `https://wa.me/${whatsappNum}?text=${encodeURIComponent(message)}`;
               toast.success("Redirecting to WhatsApp Checkout...", {
                 description: `Opening chat to buy ${selectedProduct.name}.`,
                 icon: "🛍️",
