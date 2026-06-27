@@ -83,7 +83,7 @@ export default function Home() {
                 Latest Arrivals
               </h2>
               <p className="mt-3 text-lg text-zinc-500 max-w-2xl">
-                Experience our newest additions crafted from top-tier materials and cutting-edge designs.
+                Discover our latest viral smart Chinese gadgets, daily life-saving utilities, and premium handcrafted jewellery.
               </p>
             </div>
             <Link

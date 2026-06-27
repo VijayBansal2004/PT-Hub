@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ShoppingBag, Heart } from "lucide-react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
+import Logo from "./Logo";
 
 interface NavbarProps {
   selectedCategory?: string;
@@ -37,14 +38,8 @@ export default function Navbar({
     <header className="sticky top-0 z-40 w-full border-b border-zinc-200/50 bg-white/70 backdrop-blur-xl transition-colors duration-300">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-2 cursor-pointer">
-          <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-pink-500 to-indigo-600 text-white shadow-md shadow-indigo-500/20">
-            <ShoppingBag className="h-5 w-5" />
-            <div className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-pink-400 animate-ping" />
-          </div>
-          <span className="bg-gradient-to-r from-zinc-900 to-zinc-600 bg-clip-text text-xl font-bold tracking-tight text-transparent">
-            AURA
-          </span>
+        <Link href="/">
+          <Logo />
         </Link>
 
         {/* Category Navigation (Desktop) */}

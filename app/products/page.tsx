@@ -117,7 +117,7 @@ function ProductsContent() {
             Explore All Products
           </h1>
           <p className="mt-2 max-w-xl text-lg text-zinc-500">
-            Browse our full catalog of premium products, featuring our finest materials and exquisite designs.
+            Browse our curated collection of useful smart Chinese imports, innovative daily utilities, and premium handcrafted jewellery.
           </p>
         </div>
       </section>

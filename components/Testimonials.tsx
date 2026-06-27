@@ -18,19 +18,19 @@ const TESTIMONIALS: Testimonial[] = [
   {
     id: "t1",
     name: "Sarah Jenkins",
-    role: "Creative Director",
+    role: "Jewellery Collector",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
-    content: "The Aero-Fit Chronograph is pure luxury. The drape of the steel and clarity of the dial are immaculate. A premium addition to my styling catalog.",
-    itemBought: "Aero-Fit Chronograph"
+    content: "The Aura Gold Bangle is stunning. The craftsmanship is highly detailed, and it has an incredible luxury weight. It adds the perfect elegance to my outfits.",
+    itemBought: "Aura Gold Bangle"
   },
   {
     id: "t2",
     name: "David Chen",
-    role: "Architect",
+    role: "Tech Enthusiast",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
-    content: "Minimalism done right. The Mag-Charge Desk Base is solid walnut, heavy, and charges rapidly. It fits on my minimalist workspace beautifully.",
+    content: "Minimalism and utility combined. The Mag-Charge Desk Base is walnut and aluminum, heavy, and charges rapidly. It makes my smart workspace look futuristic.",
     itemBought: "Mag-Charge Desk Base"
   },
   {
@@ -39,35 +39,35 @@ const TESTIMONIALS: Testimonial[] = [
     role: "Lifestyle Blogger",
     avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
-    content: "I am absolutely obsessed with the Aura Silk Dress. The fabric has a gorgeous subtle sheen and flows beautifully from day to evening wear.",
-    itemBought: "Aura Silk Wrap Dress"
+    content: "I am absolutely obsessed with the Jade Pendant Necklace. The stone quality is pristine and it has a beautiful premium finish. Highly recommend PT Hub imports!",
+    itemBought: "Imperial Jade Pendant"
   },
   {
     id: "t4",
     name: "Marcus Miller",
-    role: "Design Engineer",
+    role: "Smart Home Enthusiast",
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
-    content: "The Urban Leather Jacket is built like a tank yet fits like a glove. The hand-burnished details age beautifully. Best wardrobe investment in years.",
-    itemBought: "Urban Leather Jacket"
+    content: "This Automatic Rice Dispenser with a digital scaling cup is a game changer for my kitchen. Super functional Chinese smart kitchen utility. Sturdy and precise.",
+    itemBought: "Smart Culinary Rice Dispenser"
   },
   {
     id: "t5",
     name: "Sophia Martinez",
-    role: "Product Designer",
+    role: "Product Reviewer",
     avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
-    content: "The Thermostatic Hydro Flask keeps my matchas ice-cold all day through long client workshops. Love the leak-proof lock and premium powder coat.",
-    itemBought: "Thermostatic Hydro Flask"
+    content: "The Ultra-Sonic Jewellery Cleaner from PT Hub works like a charm. Cleans my premium rings and watches in minutes. A must-have gadget for any jewellery lover.",
+    itemBought: "Sonic-Wash Jewellery Cleaner"
   },
   {
     id: "t6",
     name: "Lucas Vance",
-    role: "Parent & Photographer",
+    role: "Gadget Collector",
     avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
-    content: "My kid loves the Cosmic backpack. The glow-in-the-dark prints are incredibly vibrant, and it holds all books and lunchboxes without strain.",
-    itemBought: "Cosmic Pattern Backpack"
+    content: "I bought the Folding Desk Fan with built-in power bank. Extremely useful, portable, and runs silent. PT Hub sources the best high-quality useful Chinese gadgets.",
+    itemBought: "3-in-1 Smart Folding Fan"
   }
 ];
 
@@ -90,7 +90,7 @@ export default function Testimonials() {
           Loved by Tastemakers
         </h2>
         <p className="mt-2 max-w-2xl text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
-          See how our community of designers, architects, and creatives styling their spaces and wardrobes with AURA premium goods.
+          See how our community of designers, architects, and creatives styling their spaces and wardrobes with PT Hub premium goods.
         </p>
       </div>
 

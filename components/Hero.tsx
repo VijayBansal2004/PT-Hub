@@ -15,15 +15,15 @@ interface HeroProps {
 }
 
 const DEFAULT_STATS: HeroStat[] = [
-  { value: "8+", label: "Premium Items" },
-  { value: "4.8★", label: "Avg Rating" },
-  { value: "24h", label: "Fast Delivery" },
+  { value: "150+", label: "Smart Products" },
+  { value: "4.9★", label: "Avg Rating" },
+  { value: "2-Day", label: "Fast Dispatch" },
 ];
 
 export default function Hero({
-  tag = "Summer Collection 2026",
-  title = "Define Your Aesthetic",
-  description = "Discover a curated collection of ultra-premium goods. Seamlessly crafted for comfort, longevity, and timeless style.",
+  tag = "Smart Gadgets & Luxury Jewellery",
+  title = "Innovative Living, Timeless Elegance",
+  description = "Discover incredibly useful smart Chinese gadgets, life-saving household utilities, and stunning handcrafted premium jewellery. Curated import quality delivered to your doorstep.",
   stats = DEFAULT_STATS,
 }: HeroProps) {
   return (

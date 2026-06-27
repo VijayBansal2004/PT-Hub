@@ -13,8 +13,8 @@ interface FAQItem {
 const FAQ_QUESTIONS: FAQItem[] = [
   {
     id: "item-1",
-    title: "What is AURA?",
-    content: "AURA is a curated lifestyle boutique offering premium essentials, accessories, kids items, and home utilities. We focus on clean minimalism, high-end materials, and functional design."
+    title: "What is PT Hub?",
+    content: "PT Hub is a curated lifestyle boutique offering premium essentials, accessories, kids items, and home utilities. We focus on clean minimalism, high-end materials, and functional design."
   },
   {
     id: "item-2",
@@ -28,7 +28,7 @@ const FAQ_QUESTIONS: FAQItem[] = [
   },
   {
     id: "item-4",
-    title: "Are AURA products sustainably sourced?",
+    title: "Are PT Hub products sustainably sourced?",
     content: "Yes, sustainability is at our core. Our leather goods are vegetable-tanned, apparel items are crafted from organic mulberry silk and cotton, and utility items are constructed from genuine wood and aluminum."
   },
   {

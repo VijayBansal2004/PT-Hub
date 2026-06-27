@@ -26,15 +26,15 @@ const PlusIcon = ({ position }: { position: "top-left" | "top-right" | "bottom-l
 };
 
 export default function Cta({
-  title = "Unlock the AURA Experience",
-  description = "Join the AURA membership today to unlock 10% off your first premium order, receive seasonal lookbook releases, and enjoy complimentary express delivery.",
-  primaryBtnText = "Subscribe Now",
-  secondaryBtnText = "Learn More"
+  title = "Get Smarter Gadgets & Exquisite Jewellery First",
+  description = "Subscribe to the PT Hub club to receive 15% off your first import order, weekly drops of viral smart utilities, and early access to handcrafted jewellery collections.",
+  primaryBtnText = "Join PT Hub Club",
+  secondaryBtnText = "Browse Catalog"
 }: CtaProps) {
 
   const handleSubscribe = () => {
-    toast.success("Welcome to AURA Club!", {
-      description: "We have sent your 10% discount code to your inbox.",
+    toast.success("Welcome to PT Hub Club!", {
+      description: "We have sent your 15% discount code to your inbox.",
       icon: "🎁"
     });
   };
@@ -56,7 +56,7 @@ export default function Cta({
 
         <div className="flex flex-col items-center gap-1">
           <div className="inline-flex items-center gap-1 rounded-full bg-indigo-50 dark:bg-indigo-950/40 px-2.5 py-0.5 text-[10px] font-bold text-indigo-600 dark:text-indigo-400 border border-indigo-200/10">
-            <Sparkles className="h-3 w-3" /> AURA CLUB PRIVILEGES
+            <Sparkles className="h-3 w-3" /> PT HUB PRIVILEGES
           </div>
           <h2 className="text-center font-extrabold text-2xl md:text-3xl text-zinc-900 dark:text-white tracking-tight mt-3">
             {title}
@@ -70,7 +70,7 @@ export default function Cta({
         <div className="flex items-center justify-center gap-3">
           {/* Secondary Link button */}
           <button
-            onClick={() => toast("AURA Membership brochure requested.")}
+            onClick={() => toast("PT Hub Membership brochure requested.")}
             className="px-5 py-2.5 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 font-semibold text-xs hover:bg-zinc-50 dark:hover:bg-zinc-850 active:scale-95 transition-all cursor-pointer bg-white/60 dark:bg-zinc-900/50"
           >
             {secondaryBtnText}
