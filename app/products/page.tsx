@@ -10,12 +10,14 @@ import ProductModal from "@/components/ProductModal";
 import Footer from "@/components/Footer";
 import FloatingContact from "@/components/FloatingContact";
 import { Toaster, toast } from "sonner";
-import { PRODUCTS, Product } from "../data";
+import { Product } from "../data";
+import { getProducts } from "@/app/utils/products";
 
 function ProductsContent() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get("category") || "All";
 
+  const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [sortBy, setSortBy] = useState<string>("default");
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -29,8 +31,10 @@ function ProductsContent() {
     }
   }, [initialCategory]);
 
-  // Initialize client-side favorites
+  // Initialize client-side favorites and combined products
   useEffect(() => {
+    getProducts().then(setProducts);
+
     const savedFavs = localStorage.getItem("aura-favorites");
     if (savedFavs) {
       try {
@@ -78,7 +82,7 @@ function ProductsContent() {
 
   // Filter & Sort products using memoization and standard array methods
   const filteredProducts = useMemo(() => {
-    return PRODUCTS.filter((product) => {
+    return products.filter((product) => {
       const matchesCategory =
         selectedCategory === "All" || product.category === selectedCategory;
       const matchesSearch =
@@ -94,7 +98,7 @@ function ProductsContent() {
       if (sortBy === "reviews") return b.reviewsCount - a.reviewsCount;
       return 0;
     });
-  }, [selectedCategory, sortBy, searchQuery]);
+  }, [selectedCategory, sortBy, searchQuery, products]);
 
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900 transition-colors duration-300 font-sans flex flex-col animate-fade-in">

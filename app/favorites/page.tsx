@@ -4,17 +4,21 @@ import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { ArrowLeft, Heart, ShoppingBag } from "lucide-react";
 import { Toaster, toast } from "sonner";
-import { PRODUCTS, Product } from "../data";
+import { Product } from "../data";
+import { getProducts } from "@/app/utils/products";
 import ProductCard from "@/components/ProductCard";
 import ProductModal from "@/components/ProductModal";
 import Footer from "@/components/Footer";
 
 export default function FavoritesPage() {
+  const [products, setProducts] = useState<Product[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-  // Initialize client-side favorites
+  // Initialize client-side favorites and combined products
   useEffect(() => {
+    getProducts().then(setProducts);
+
     const savedFavs = localStorage.getItem("aura-favorites");
     if (savedFavs) {
       try {
@@ -56,8 +60,8 @@ export default function FavoritesPage() {
 
   // Filter products that are in the favorites list
   const favoriteProducts = useMemo(() => {
-    return PRODUCTS.filter((product) => favorites.includes(product.id));
-  }, [favorites]);
+    return products.filter((product) => favorites.includes(product.id));
+  }, [favorites, products]);
 
   return (
     <div className="animate-fade-in">

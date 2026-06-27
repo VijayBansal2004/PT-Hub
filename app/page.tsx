@@ -13,14 +13,18 @@ import Cta from "@/components/Cta";
 import Testimonials from "@/components/Testimonials";
 import FloatingContact from "@/components/FloatingContact";
 import { Toaster, toast } from "sonner";
-import { PRODUCTS, Product } from "./data";
+import { Product } from "./data";
+import { getProducts } from "@/app/utils/products";
 
 export default function Home() {
+  const [products, setProducts] = useState<Product[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-  // Initialize client-side favorites
+  // Initialize client-side favorites and combined products
   useEffect(() => {
+    getProducts().then(setProducts);
+
     const savedFavs = localStorage.getItem("aura-favorites");
     if (savedFavs) {
       try {
@@ -58,8 +62,8 @@ export default function Home() {
 
   // Get the latest top 6 products (using isNew and slicing to 6)
   const latestProducts = useMemo(() => {
-    return PRODUCTS.filter((product) => product.isNew).slice(0, 6);
-  }, []);
+    return products.filter((product) => product.isNew).slice(0, 6);
+  }, [products]);
 
   return (
     <div className="animate-fade-in">
@@ -114,7 +118,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white hover:bg-zinc-100 px-8 py-4 text-base font-semibold text-zinc-700 transition-all cursor-pointer hover:scale-105 active:scale-95 shadow-sm"
             >
               <ShoppingBag className="h-5 w-5 text-blue-600" />
-              <span>View Full Catalog ({PRODUCTS.length} items)</span>
+              <span>View Full Catalog ({products.length} items)</span>
             </Link>
           </div>
         </main>
