@@ -1,65 +1,37 @@
 import { Product } from "@/app/data";
 
-const DB_NAME = "PTHubStoreDB";
-const DB_VERSION = 1;
-const STORE_NAME = "custom-products";
-
-function openDB(): Promise<IDBDatabase> {
-  return new Promise((resolve, reject) => {
-    if (typeof window === "undefined") {
-      reject(new Error("Browser database is not available on server-side"));
-      return;
-    }
-    const request = indexedDB.open(DB_NAME, DB_VERSION);
-    request.onerror = () => reject(request.error);
-    request.onsuccess = () => resolve(request.result);
-    request.onupgradeneeded = () => {
-      const db = request.result;
-      if (!db.objectStoreNames.contains(STORE_NAME)) {
-        db.createObjectStore(STORE_NAME, { keyPath: "id" });
-      }
-    };
-  });
-}
-
 export async function getProducts(): Promise<Product[]> {
-  if (typeof window === "undefined") return [];
   try {
-    const db = await openDB();
-    const customList = await new Promise<Product[]>((resolve, reject) => {
-      const transaction = db.transaction(STORE_NAME, "readonly");
-      const store = transaction.objectStore(STORE_NAME);
-      const request = store.getAll();
-      request.onerror = () => reject(request.error);
-      request.onsuccess = () => resolve(request.result || []);
-    });
-    return customList;
+    // Force cache: "no-store" to ensure we get fresh server products on every load
+    const res = await fetch("/api/products", { cache: "no-store" });
+    if (!res.ok) throw new Error("Failed to fetch products");
+    return await res.json();
   } catch (e) {
-    console.error("Error reading custom products from database", e);
+    console.error("Error reading products from database REST API", e);
     return [];
   }
 }
 
 export async function saveProduct(product: Product): Promise<void> {
-  if (typeof window === "undefined") return;
-  const db = await openDB();
-  return new Promise<void>((resolve, reject) => {
-    const transaction = db.transaction(STORE_NAME, "readwrite");
-    const store = transaction.objectStore(STORE_NAME);
-    const request = store.put(product);
-    request.onerror = () => reject(request.error);
-    request.onsuccess = () => resolve();
+  const res = await fetch("/api/products", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(product),
   });
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.error || "Failed to save product to database");
+  }
 }
 
 export async function deleteProduct(productId: string): Promise<void> {
-  if (typeof window === "undefined") return;
-  const db = await openDB();
-  return new Promise<void>((resolve, reject) => {
-    const transaction = db.transaction(STORE_NAME, "readwrite");
-    const store = transaction.objectStore(STORE_NAME);
-    const request = store.delete(productId);
-    request.onerror = () => reject(request.error);
-    request.onsuccess = () => resolve();
+  const res = await fetch(`/api/products/${productId}`, {
+    method: "DELETE",
   });
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.error || "Failed to delete product from database");
+  }
 }

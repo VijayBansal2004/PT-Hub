@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Plus, Trash2, ArrowLeft, LogOut, Package, Image as ImageIcon, Film, LayoutGrid } from "lucide-react";
+import { Plus, Trash2, ArrowLeft, LogOut, Package, Image as ImageIcon, Film, LayoutGrid, Check, Pencil } from "lucide-react";
 import Logo from "@/components/Logo";
 import { Toaster, toast } from "sonner";
 import { Product } from "@/app/data";
@@ -29,6 +29,7 @@ export default function AdminPage() {
   const [isUploadingVideo, setIsUploadingVideo] = useState(false);
   const [imageProgress, setImageProgress] = useState(0);
   const [videoProgress, setVideoProgress] = useState(0);
+  const [editingId, setEditingId] = useState<string | null>(null);
   const isUploading = isUploadingImage || isUploadingVideo;
 
   useEffect(() => {
@@ -54,6 +55,38 @@ export default function AdminPage() {
   const handleLogout = () => {
     localStorage.removeItem("pt-hub-admin-logged-in");
     router.push("/login");
+  };
+
+  const handleEditClick = (p: Product) => {
+    setName(p.name);
+    setCategory(p.category);
+    setPrice(p.price.toString());
+    setDescription(p.description);
+    setRating(p.rating.toString());
+    setReviewsCount(p.reviewsCount.toString());
+    setImage(p.image);
+    setVideo(p.video || "");
+    setColorsInput(p.colors ? p.colors.join(", ") : "");
+    setFeaturesInput(p.features ? p.features.join(", ") : "");
+    setEditingId(p.id);
+    toast.info(`Editing: "${p.name}"`, {
+      description: "Form fields populated. Click Update to save changes.",
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleCancelEdit = () => {
+    setEditingId(null);
+    setName("");
+    setPrice("");
+    setDescription("");
+    setImage("");
+    setVideo("");
+    setColorsInput("");
+    setFeaturesInput("");
+    setRating("5.0");
+    setReviewsCount("1");
+    toast("Edit cancelled");
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, type: "image" | "video") => {
@@ -175,7 +208,7 @@ export default function AdminPage() {
       .filter((f) => f.length > 0);
 
     const newProduct: Product = {
-      id: "custom_" + Date.now(),
+      id: editingId || ("custom_" + Date.now()),
       name: name.trim(),
       category,
       price: Number(price),
@@ -187,17 +220,18 @@ export default function AdminPage() {
       description: description.trim(),
       features: features.length > 0 ? features : ["Premium imported quality", "Ergonomic modern design"],
       colors: colors.length > 0 ? colors : ["#3b82f6", "#1e3a8a"],
-      isNew: true, // mark new so it reflects on Home page Latest Arrivals!
+      isNew: true,
     };
 
     try {
       await saveProduct(newProduct);
-      toast.success("Product uploaded and published!", {
+      toast.success(editingId ? "Product updated successfully!" : "Product uploaded and published!", {
         description: `${newProduct.name} is now live.`,
         icon: "🎉",
       });
 
       // Reset Form
+      setEditingId(null);
       setName("");
       setPrice("");
       setDescription("");
@@ -519,15 +553,35 @@ export default function AdminPage() {
                 </div>
               </div>
 
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={isUploading}
-                className="w-full py-3 px-6 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-md shadow-blue-600/20 active:scale-95 transition-all text-center flex items-center justify-center gap-1.5 cursor-pointer mt-4"
-              >
-                <Plus className="h-4.5 w-4.5" />
-                Publish Product
-              </button>
+              {/* Submit / Update Button */}
+              <div className="flex gap-3 mt-4">
+                <button
+                  type="submit"
+                  disabled={isUploading}
+                  className="flex-1 py-3 px-6 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-md shadow-blue-600/20 active:scale-95 transition-all text-center flex items-center justify-center gap-1.5 cursor-pointer"
+                >
+                  {editingId ? (
+                    <>
+                      <Check className="h-4.5 w-4.5" />
+                      <span>Update Product</span>
+                    </>
+                  ) : (
+                    <>
+                      <Plus className="h-4.5 w-4.5" />
+                      <span>Publish Product</span>
+                    </>
+                  )}
+                </button>
+                {editingId && (
+                  <button
+                    type="button"
+                    onClick={handleCancelEdit}
+                    className="py-3 px-5 rounded-full border border-zinc-200 bg-white hover:bg-zinc-50 text-zinc-700 font-bold text-sm active:scale-95 transition-all cursor-pointer"
+                  >
+                    Cancel
+                  </button>
+                )}
+              </div>
 
             </form>
           </div>
@@ -577,13 +631,22 @@ export default function AdminPage() {
                             ${p.price.toFixed(2)}
                           </td>
                           <td className="py-3 text-right">
-                            <button
-                              onClick={() => handleDelete(p.id, p.name)}
-                              className="p-2 bg-red-50 hover:bg-red-100 text-red-500 rounded-full transition-colors cursor-pointer"
-                              title="Delete Product"
-                            >
-                              <Trash2 className="h-4.5 w-4.5" />
-                            </button>
+                            <div className="flex justify-end gap-2">
+                              <button
+                                onClick={() => handleEditClick(p)}
+                                className="p-2 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-full transition-colors cursor-pointer"
+                                title="Edit Product"
+                              >
+                                <Pencil className="h-4 w-4" />
+                              </button>
+                              <button
+                                onClick={() => handleDelete(p.id, p.name)}
+                                className="p-2 bg-red-50 hover:bg-red-100 text-red-500 rounded-full transition-colors cursor-pointer"
+                                title="Delete Product"
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </button>
+                            </div>
                           </td>
                         </tr>
                       ))}
