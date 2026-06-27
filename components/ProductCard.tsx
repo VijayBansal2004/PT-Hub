@@ -27,16 +27,22 @@ export default function ProductCard({
       style={{ contentVisibility: "auto", ["--card-rounding" as any]: "24px" }}>
       {/* Badges indicators */}
       <div className="absolute top-6 left-6 z-10 flex flex-col gap-1.5 font-sans">
-        {product.isNew && (
-          <span className="inline-flex items-center rounded-full bg-sky-500/10 px-2.5 py-1 text-xs font-bold text-sky-600 border border-sky-500/25 backdrop-blur-md">
-            NEW
-          </span>
-        )}
-        {product.isPopular && (
-          <span className="inline-flex items-center rounded-full bg-blue-500/10 px-2.5 py-1 text-xs font-bold text-blue-600 border border-blue-500/25 backdrop-blur-md">
-            BESTSELLER
-          </span>
-        )}
+        {[
+          product.isNew && { text: "NEW", className: "bg-blue-600" },
+          product.isPopular && { text: "BESTSELLER", className: "bg-amber-500" },
+        ]
+          .filter((badge): badge is { text: string; className: string } => !!badge)
+          .map((badge, idx) => (
+            <span
+              key={idx}
+              className={cn(
+                "inline-flex items-center rounded px-2.5 py-1 text-[9px] font-black text-white tracking-widest shadow-sm uppercase",
+                badge.className
+              )}
+            >
+              {badge.text}
+            </span>
+          ))}
       </div>
 
       {/* Heart Favourites Toggle */}
@@ -44,7 +50,10 @@ export default function ProductCard({
         onClick={(e) => onToggleFavorite(product.id, e)}
         className="absolute top-5 right-5 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 border border-zinc-200/50 text-zinc-500 hover:text-zinc-900 shadow-sm hover:scale-110 active:scale-95 transition-all backdrop-blur-md cursor-pointer">
         <Heart
-          className={cn("h-4.5 w-4.5 transition-colors", isFavorite ? "fill-red-500 text-red-500" : "text-zinc-500")}
+          className={cn(
+            "h-4.5 w-4.5 transition-colors",
+            isFavorite ? "fill-red-500 text-red-500" : "text-zinc-500",
+          )}
         />
       </button>
 
@@ -62,7 +71,7 @@ export default function ProductCard({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
-          
+
           {/* Inflected icon cutout button */}
           <div className="inflected-icon">
             <div className="inflected-icon-box">
