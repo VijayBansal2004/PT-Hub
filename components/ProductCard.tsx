@@ -29,17 +29,21 @@ export default function ProductCard({
       <div className="absolute top-6 left-6 z-10 flex flex-col gap-1.5 font-sans">
         {[
           product.isNew && { text: "NEW", className: "bg-blue-600" },
-          product.isPopular && { text: "BESTSELLER", className: "bg-amber-500" },
+          product.isPopular && {
+            text: "BESTSELLER",
+            className: "bg-amber-500",
+          },
         ]
-          .filter((badge): badge is { text: string; className: string } => !!badge)
+          .filter(
+            (badge): badge is { text: string; className: string } => !!badge,
+          )
           .map((badge, idx) => (
             <span
               key={idx}
               className={cn(
-                "inline-flex items-center rounded px-2.5 py-1 text-[9px] font-black text-white tracking-widest shadow-sm uppercase",
-                badge.className
-              )}
-            >
+                "inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold text-white shadow-sm",
+                badge.className,
+              )}>
               {badge.text}
             </span>
           ))}
@@ -86,7 +90,7 @@ export default function ProductCard({
       {/* Product Content Details */}
       <div className="mt-4 flex flex-1 flex-col px-1 pb-1 justify-between font-sans">
         <div>
-          <span className="text-[11px] font-bold uppercase tracking-wider text-blue-500">
+          <span className="text-xs font-bold text-blue-500">
             {product.category}
           </span>
           <h3 className="mt-1 text-base font-bold text-zinc-900 group-hover:text-blue-600 transition-colors line-clamp-1">
