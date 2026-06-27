@@ -11,17 +11,25 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  --animate-marquee: marquee 35s linear infinite;
+  --animate-marquee: marquee 60s linear infinite;
   --animate-marquee-reverse: marquee-reverse 35s linear infinite;
 
   @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
 
   @keyframes marquee-reverse {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
   }
 }
 
@@ -43,8 +51,6 @@ body {
   --button-bg: #4f46e5;
   --button-hover-bg: #4338ca;
 }
-
-
 
 .inflected-card-inner {
   position: relative;
@@ -109,12 +115,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   cursor: pointer;
   background-color: var(--button-bg);
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
 }
-
 
 .inflected-icon-box:hover {
   background-color: var(--button-hover-bg);
@@ -122,10 +130,7 @@ body {
   box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4);
 }
 
-
 .inflected-icon-inner {
   display: flex;
   transition: color 0.3s ease;
 }
-
-

@@ -18,8 +18,8 @@ const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export default function FloatingContact() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const demoCallNumber = "+1 (555) 0198";
-  const demoWhatsAppNumber = "+1 (555) 0199";
+  const demoCallNumber = "+91 94172 12422";
+  const demoWhatsAppNumber = "+91 94172 12422";
 
   return (
     <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3 font-sans select-none">

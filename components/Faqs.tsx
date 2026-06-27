@@ -15,28 +15,33 @@ const FAQ_QUESTIONS: FAQItem[] = [
   {
     id: "item-1",
     title: "What is PT Hub?",
-    content: "PT Hub is a curated lifestyle boutique offering premium essentials, accessories, kids items, and home utilities. We focus on clean minimalism, high-end materials, and functional design."
+    content:
+      "PT Hub is a curated lifestyle boutique offering premium essentials, accessories, kids items, and home utilities. We focus on clean minimalism, high-end materials, and functional design.",
   },
   {
     id: "item-2",
     title: "How long does shipping take?",
-    content: "We process all orders within 24 hours. Standard shipping takes 3-5 business days, while express lookbook shipping takes 1-2 business days. Tracking details are sent automatically upon dispatch."
+    content:
+      "We process all orders within 24 hours. Standard shipping takes 3-5 business days, while express lookbook shipping takes 1-2 business days. Tracking details are sent automatically upon dispatch.",
   },
   {
     id: "item-3",
     title: "What is your return policy?",
-    content: "We support 30-day hassle-free returns. If you are not completely satisfied with your purchase, you can return any unworn, unused items in their original packaging for a full refund."
+    content:
+      "We support 30-day hassle-free returns. If you are not completely satisfied with your purchase, you can return any unworn, unused items in their original packaging for a full refund.",
   },
   {
     id: "item-4",
     title: "Are PT Hub products sustainably sourced?",
-    content: "Yes, sustainability is at our core. Our leather goods are vegetable-tanned, apparel items are crafted from organic mulberry silk and cotton, and utility items are constructed from genuine wood and aluminum."
+    content:
+      "Yes, sustainability is at our core. Our leather goods are vegetable-tanned, apparel items are crafted from organic mulberry silk and cotton, and utility items are constructed from genuine wood and aluminum.",
   },
   {
     id: "item-5",
     title: "How do I register a warranty for my charger/watch?",
-    content: "All electronics (chargers, chronograph watches) automatically come with a 2-year warranty from the date of purchase. You do not need to register separately; your order receipt acts as proof."
-  }
+    content:
+      "All electronics (chargers, chronograph watches) automatically come with a 2-year warranty from the date of purchase. You do not need to register separately; your order receipt acts as proof.",
+  },
 ];
 
 export default function Faqs() {
@@ -56,7 +61,9 @@ export default function Faqs() {
           Frequently Asked Questions
         </h2>
         <p className="max-w-2xl text-sm text-zinc-500 leading-relaxed">
-          Here are some common queries and responses from our customers. If you don&apos;t find the answer you&apos;re looking for, feel free to reach out to our team.
+          Here are some common queries and responses from our customers. If you
+          don&apos;t find the answer you&apos;re looking for, feel free to reach
+          out to our team.
         </p>
       </div>
 
@@ -67,13 +74,12 @@ export default function Faqs() {
             <div key={item.id} className="transition-colors duration-200">
               <button
                 onClick={() => toggleQuestion(item.id)}
-                className="flex w-full items-center justify-between px-6 py-4.5 text-left text-sm sm:text-base font-bold text-zinc-800 hover:text-blue-600 focus:outline-none transition-colors cursor-pointer"
-              >
+                className="flex w-full items-center justify-between px-6 py-4.5 text-left text-sm sm:text-base font-bold text-zinc-800 hover:text-blue-600 focus:outline-none transition-colors cursor-pointer">
                 <span>{item.title}</span>
                 <ChevronDown
                   className={cn(
                     "h-4.5 w-4.5 text-zinc-400 transition-transform duration-250",
-                    isOpen && "rotate-180 text-blue-500"
+                    isOpen && "rotate-180 text-blue-500",
                   )}
                 />
               </button>
@@ -82,11 +88,10 @@ export default function Faqs() {
                 initial={false}
                 animate={{
                   height: isOpen ? "auto" : 0,
-                  opacity: isOpen ? 1 : 0
+                  opacity: isOpen ? 1 : 0,
                 }}
                 transition={{ duration: 0.25, ease: [0.04, 0.62, 0.23, 0.98] }}
-                className="overflow-hidden px-6"
-              >
+                className="overflow-hidden px-6">
                 <div className="pb-4.5 text-xs sm:text-sm text-zinc-500 leading-relaxed">
                   {item.content}
                 </div>

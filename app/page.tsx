@@ -69,9 +69,7 @@ export default function Home() {
     <div className="animate-fade-in">
       <div className="min-h-screen bg-zinc-50 text-zinc-900 transition-colors duration-300 font-sans">
         {/* Navigation bar component */}
-        <Navbar
-          favoritesCount={favorites.length}
-        />
+        <Navbar favoritesCount={favorites.length} />
 
         {/* Hero marketing banner component */}
         <Hero />
@@ -87,13 +85,13 @@ export default function Home() {
                 Latest Arrivals
               </h2>
               <p className="mt-3 text-lg text-zinc-500 max-w-2xl">
-                Discover our latest viral smart Chinese gadgets, daily life-saving utilities, and premium handcrafted jewellery.
+                Discover our latest viral smart Chinese gadgets, daily
+                life-saving utilities, and premium handcrafted jewellery.
               </p>
             </div>
             <Link
               href="/products"
-              className="mt-6 sm:mt-0 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-bold text-white hover:bg-blue-500 transition-colors shadow-lg shadow-blue-600/20 cursor-pointer self-start"
-            >
+              className="mt-6 sm:mt-0 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-bold text-white hover:bg-blue-500 transition-colors shadow-lg shadow-blue-600/20 cursor-pointer self-start">
               <span>Explore All Products</span>
               <ArrowRight className="h-4 w-4" />
             </Link>
@@ -115,8 +113,7 @@ export default function Home() {
           <div className="mt-16 text-center">
             <Link
               href="/products"
-              className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white hover:bg-zinc-100 px-8 py-4 text-base font-semibold text-zinc-700 transition-all cursor-pointer hover:scale-105 active:scale-95 shadow-sm"
-            >
+              className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white hover:bg-zinc-100 px-8 py-4 text-base font-semibold text-zinc-700 transition-all cursor-pointer hover:scale-105 active:scale-95 shadow-sm">
               <ShoppingBag className="h-5 w-5 text-blue-600" />
               <span>View Full Catalog ({products.length} items)</span>
             </Link>
@@ -156,7 +153,7 @@ export default function Home() {
         <Faqs />
 
         {/* Call to Action section */}
-        <Cta />
+        {/* <Cta /> */}
 
         {/* Footer component */}
         <Footer />
@@ -165,11 +162,7 @@ export default function Home() {
         <FloatingContact />
 
         {/* Shadcn Sonner Toaster */}
-        <Toaster
-          richColors
-          position="bottom-right"
-          theme="light"
-        />
+        <Toaster richColors position="bottom-right" theme="light" />
       </div>
     </div>
   );

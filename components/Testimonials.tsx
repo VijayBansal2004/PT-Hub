@@ -18,56 +18,68 @@ const TESTIMONIALS: Testimonial[] = [
     id: "t1",
     name: "Sarah Jenkins",
     role: "Jewellery Collector",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
-    content: "The Aura Gold Bangle is stunning. The craftsmanship is highly detailed, and it has an incredible luxury weight. It adds the perfect elegance to my outfits.",
-    itemBought: "Aura Gold Bangle"
+    content:
+      "The Aura Gold Bangle is stunning. The craftsmanship is highly detailed, and it has an incredible luxury weight. It adds the perfect elegance to my outfits.",
+    itemBought: "Aura Gold Bangle",
   },
   {
     id: "t2",
     name: "David Chen",
     role: "Tech Enthusiast",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
-    content: "Minimalism and utility combined. The Mag-Charge Desk Base is walnut and aluminum, heavy, and charges rapidly. It makes my smart workspace look futuristic.",
-    itemBought: "Mag-Charge Desk Base"
+    content:
+      "Minimalism and utility combined. The Mag-Charge Desk Base is walnut and aluminum, heavy, and charges rapidly. It makes my smart workspace look futuristic.",
+    itemBought: "Mag-Charge Desk Base",
   },
   {
     id: "t3",
     name: "Elena Rostova",
     role: "Lifestyle Blogger",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
-    content: "I am absolutely obsessed with the Jade Pendant Necklace. The stone quality is pristine and it has a beautiful premium finish. Highly recommend PT Hub imports!",
-    itemBought: "Imperial Jade Pendant"
+    content:
+      "I am absolutely obsessed with the Jade Pendant Necklace. The stone quality is pristine and it has a beautiful premium finish. Highly recommend PT Hub imports!",
+    itemBought: "Imperial Jade Pendant",
   },
   {
     id: "t4",
     name: "Marcus Miller",
     role: "Smart Home Enthusiast",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
-    content: "This Automatic Rice Dispenser with a digital scaling cup is a game changer for my kitchen. Super functional Chinese smart kitchen utility. Sturdy and precise.",
-    itemBought: "Smart Culinary Rice Dispenser"
+    content:
+      "This Automatic Rice Dispenser with a digital scaling cup is a game changer for my kitchen. Super functional Chinese smart kitchen utility. Sturdy and precise.",
+    itemBought: "Smart Culinary Rice Dispenser",
   },
   {
     id: "t5",
     name: "Sophia Martinez",
     role: "Product Reviewer",
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&h=150&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
-    content: "The Ultra-Sonic Jewellery Cleaner from PT Hub works like a charm. Cleans my premium rings and watches in minutes. A must-have gadget for any jewellery lover.",
-    itemBought: "Sonic-Wash Jewellery Cleaner"
+    content:
+      "The Ultra-Sonic Jewellery Cleaner from PT Hub works like a charm. Cleans my premium rings and watches in minutes. A must-have gadget for any jewellery lover.",
+    itemBought: "Sonic-Wash Jewellery Cleaner",
   },
   {
     id: "t6",
     name: "Lucas Vance",
     role: "Gadget Collector",
-    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=150&h=150&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
-    content: "I bought the Folding Desk Fan with built-in power bank. Extremely useful, portable, and runs silent. PT Hub sources the best high-quality useful Chinese gadgets.",
-    itemBought: "3-in-1 Smart Folding Fan"
-  }
+    content:
+      "I bought the Folding Desk Fan with built-in power bank. Extremely useful, portable, and runs silent. PT Hub sources the best high-quality useful Chinese gadgets.",
+    itemBought: "3-in-1 Smart Folding Fan",
+  },
 ];
 
 export default function Testimonials() {
@@ -89,7 +101,8 @@ export default function Testimonials() {
           Loved by Tastemakers
         </h2>
         <p className="mt-2 max-w-2xl text-sm text-zinc-500 leading-relaxed">
-          See how our community of designers, architects, and creatives styling their spaces and wardrobes with PT Hub premium goods.
+          See how our community of designers, architects, and creatives styling
+          their spaces and wardrobes with PT Hub premium goods.
         </p>
       </div>
 
@@ -99,19 +112,22 @@ export default function Testimonials() {
         <div className="flex overflow-hidden w-full select-none [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
           <div className="flex gap-4 w-max shrink-0 animate-marquee hover:[animation-play-state:paused] py-1">
             {doubleRow1.map((testimonial, idx) => (
-              <TestimonialCard key={`${testimonial.id}-row1-${idx}`} testimonial={testimonial} />
+              <TestimonialCard
+                key={`${testimonial.id}-row1-${idx}`}
+                testimonial={testimonial}
+              />
             ))}
           </div>
         </div>
 
         {/* Row 2: Right to Left (Reverse) */}
-        <div className="flex overflow-hidden w-full select-none [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
+        {/* <div className="flex overflow-hidden w-full select-none [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
           <div className="flex gap-4 w-max shrink-0 animate-marquee-reverse hover:[animation-play-state:paused] py-1">
             {doubleRow2.map((testimonial, idx) => (
               <TestimonialCard key={`${testimonial.id}-row2-${idx}`} testimonial={testimonial} />
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

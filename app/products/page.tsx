@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { Search } from "lucide-react";
+import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import FilterBar from "@/components/FilterBar";
 import ProductCard from "@/components/ProductCard";
@@ -12,6 +12,7 @@ import FloatingContact from "@/components/FloatingContact";
 import { Toaster, toast } from "sonner";
 import { Product } from "../data";
 import { getProducts } from "@/app/utils/products";
+import { cn } from "@/app/utils/cn";
 
 function ProductsContent() {
   const searchParams = useSearchParams();
@@ -23,6 +24,10 @@ function ProductsContent() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [favorites, setFavorites] = useState<string[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  
+  // Pagination State
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const ITEMS_PER_PAGE = 8;
 
   // Initialize selectedCategory from searchParams when it loads
   useEffect(() => {
@@ -100,6 +105,18 @@ function ProductsContent() {
     });
   }, [selectedCategory, sortBy, searchQuery, products]);
 
+  // Reset pagination to first page when search filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory, searchQuery, sortBy]);
+
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+
+  const paginatedProducts = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredProducts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [filteredProducts, currentPage]);
+
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900 transition-colors duration-300 font-sans flex flex-col animate-fade-in">
       {/* Navigation bar component */}
@@ -164,7 +181,7 @@ function ProductsContent() {
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            {filteredProducts.map((product) => (
+            {paginatedProducts.map((product) => (
               <ProductCard
                 key={product.id}
                 product={product}
@@ -173,6 +190,67 @@ function ProductsContent() {
                 onClick={() => setSelectedProduct(product)}
               />
             ))}
+          </div>
+        )}
+
+        {/* Pagination Controls bar */}
+        {totalPages > 1 && (
+          <div className="mt-12 flex flex-col items-center justify-center gap-4 border-t border-zinc-200/50 pt-8 font-sans">
+            <div className="flex items-center gap-2">
+              {/* Prev Page */}
+              <button
+                disabled={currentPage === 1}
+                onClick={() => {
+                  setCurrentPage((prev) => Math.max(prev - 1, 1));
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="h-9 w-9 flex items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-500 transition-all cursor-pointer hover:bg-zinc-50 disabled:opacity-40 disabled:pointer-events-none active:scale-95"
+                title="Previous Page"
+              >
+                <ChevronLeft className="h-4.5 w-4.5" />
+              </button>
+
+              {/* Number Buttons */}
+              <div className="flex items-center gap-1.5">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <button
+                    key={page}
+                    onClick={() => {
+                      setCurrentPage(page);
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }}
+                    className={cn(
+                      "h-9 w-9 text-xs font-bold rounded-full transition-all cursor-pointer",
+                      currentPage === page
+                        ? "bg-blue-600 text-white shadow-md shadow-blue-600/20 scale-105"
+                        : "border border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50"
+                    )}
+                  >
+                    {page}
+                  </button>
+                ))}
+              </div>
+
+              {/* Next Page */}
+              <button
+                disabled={currentPage === totalPages}
+                onClick={() => {
+                  setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="h-9 w-9 flex items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-500 transition-all cursor-pointer hover:bg-zinc-50 disabled:opacity-40 disabled:pointer-events-none active:scale-95"
+                title="Next Page"
+              >
+                <ChevronRight className="h-4.5 w-4.5" />
+              </button>
+            </div>
+
+            {/* Pagination stats status text */}
+            <span className="text-xs text-zinc-400 font-medium">
+              Showing {(currentPage - 1) * ITEMS_PER_PAGE + 1} -{" "}
+              {Math.min(currentPage * ITEMS_PER_PAGE, filteredProducts.length)} of{" "}
+              {filteredProducts.length} items
+            </span>
           </div>
         )}
       </main>
@@ -190,7 +268,7 @@ function ProductsContent() {
         onBuyNow={() => {
           if (selectedProduct) {
             const message = `Hello! I would like to purchase the *${selectedProduct.name}* (${selectedProduct.category}) for *$${selectedProduct.price.toFixed(2)}*.`;
-            const whatsappUrl = `https://wa.me/15550199?text=${encodeURIComponent(message)}`;
+            const whatsappUrl = `https://wa.me/919417212422?text=${encodeURIComponent(message)}`;
             toast.success("Redirecting to WhatsApp Checkout...", {
               description: `Opening chat to buy ${selectedProduct.name}.`,
               icon: "🛍️",

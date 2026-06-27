@@ -79,7 +79,7 @@ export default function Footer() {
             {/* WhatsApp */}
             <a
               aria-label="WhatsApp"
-              href="https://wa.me/15550199"
+              href="https://wa.me/919417212422"
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white hover:bg-zinc-50 hover:text-blue-600 transition-all hover:scale-105 shadow-sm cursor-pointer">
@@ -91,7 +91,7 @@ export default function Footer() {
             {/* Phone Call */}
             <a
               aria-label="Phone Call"
-              href="tel:+15550199"
+              href="tel:+919417212422"
               className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white hover:bg-zinc-50 hover:text-blue-600 transition-all hover:scale-105 shadow-sm cursor-pointer">
               <svg
                 className="h-5 w-5 fill-none stroke-current"
