@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   description: "Shop incredibly useful Chinese gadgets, smart utilities, life-hacks, and exquisite handcrafted premium jewellery at PT Hub.",
 };
 
+import { cn } from "@/app/utils/cn";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,7 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={cn(geistSans.variable, geistMono.variable, "h-full antialiased")}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

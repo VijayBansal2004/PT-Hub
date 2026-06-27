@@ -15,6 +15,7 @@ import {
   ShoppingBag,
 } from "lucide-react";
 import { Product } from "@/app/data";
+import { cn } from "@/app/utils/cn";
 
 interface ProductModalProps {
   product: Product | null;
@@ -53,18 +54,18 @@ export default function ProductModal({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/70 dark:bg-black/85 backdrop-blur-md"
+            className="fixed inset-0 bg-black/70 backdrop-blur-md"
           />
 
           {/* Modal Container Card */}
           <motion.div
             layoutId={`card-${product.id}`}
-            className="relative z-10 w-full max-w-5xl md:overflow-hidden rounded-3xl bg-white dark:bg-zinc-950 shadow-2xl border border-zinc-200/80 dark:border-zinc-800/80 h-fit md:h-[80vh] max-h-[750px] flex flex-col md:flex-row transition-colors duration-300"
+            className="relative z-10 w-full max-w-5xl md:overflow-hidden rounded-3xl bg-white shadow-2xl border border-zinc-200/80 h-fit md:h-[80vh] max-h-[750px] flex flex-col md:flex-row transition-colors duration-300"
             style={{ borderRadius: 28 }}>
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 md:top-5 md:right-5 z-20 flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full bg-zinc-100/80 dark:bg-zinc-900/80 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white shadow-md hover:scale-110 active:scale-95 transition-all backdrop-blur-md cursor-pointer">
+              className="absolute top-4 right-4 md:top-5 md:right-5 z-20 flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full bg-zinc-100/80 text-zinc-700 hover:text-zinc-900 shadow-md hover:scale-110 active:scale-95 transition-all backdrop-blur-md cursor-pointer">
               <X className="h-4 w-4 md:h-5 md:w-5" />
             </button>
 
@@ -75,7 +76,7 @@ export default function ProductModal({
               transition={{ delay: 0.1, duration: 0.25 }}
               className="flex flex-col md:flex-row w-full h-full">
               {/* Left Side Media Section: Only video lookbook */}
-              <div className="w-full md:w-1/2 p-2 md:p-8 flex flex-col border-b md:border-b-0 md:border-r border-zinc-100 dark:border-zinc-900">
+              <div className="w-full md:w-1/2 p-2 md:p-8 flex flex-col border-b md:border-b-0 md:border-r border-zinc-100">
                 {/* Main Media Preview Box */}
                 <div className="relative aspect-square md:aspect-auto md:flex-grow h-full w-full overflow-hidden rounded-3xl md:rounded-2xl bg-zinc-900 flex items-center justify-center shadow-inner group/video">
                   <video
@@ -111,11 +112,12 @@ export default function ProductModal({
                           }
                         }
                       }}
-                      className={`flex h-16 w-16 items-center justify-center rounded-full bg-black/50 hover:bg-black/70 text-white backdrop-blur-md transition-all duration-300 shadow-2xl border border-white/10 cursor-pointer pointer-events-auto hover:scale-110 active:scale-95 ${
+                      className={cn(
+                        "flex h-16 w-16 items-center justify-center rounded-full bg-black/50 hover:bg-black/70 text-white backdrop-blur-md transition-all duration-300 shadow-2xl border border-white/10 cursor-pointer pointer-events-auto hover:scale-110 active:scale-95",
                         isVideoPlaying
                           ? "opacity-0 group-hover/video:opacity-100 scale-90 group-hover/video:scale-100"
                           : "opacity-100 scale-100"
-                      }`}
+                      )}
                       aria-label={
                         isVideoPlaying ? "Pause video" : "Play video"
                       }>
@@ -152,7 +154,7 @@ export default function ProductModal({
 
                   {/* Title & Price */}
                   <div className="mt-3 flex flex-col md:flex-row items-start justify-between gap-0 md:gap-4">
-                    <h2 className="text-lg md:text-2xl font-bold md:font-extrabold text-zinc-900 dark:text-white tracking-tight flex-1">
+                    <h2 className="text-lg md:text-2xl font-bold md:font-extrabold text-zinc-900 tracking-tight flex-1">
                       {product.name}
                     </h2>
                     <div className="flex items-center gap-3 shrink-0">
@@ -162,18 +164,19 @@ export default function ProductModal({
                       {/* Favorite Button next to Price */}
                       <button
                         onClick={onToggleFavorite}
-                        className={`inline-block md:hidden p-2 rounded-full border transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer ${
+                        className={cn(
+                          "inline-block md:hidden p-2 rounded-full border transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer",
                           isFavorite
                             ? "bg-blue-500/10 text-blue-600 border-blue-500/30"
                             : "bg-zinc-50 text-zinc-400 border-zinc-200 hover:text-zinc-600"
-                        }`}
+                        )}
                         aria-label={
                           isFavorite
                             ? "Remove from favorites"
                             : "Add to favorites"
                         }>
                         <Heart
-                          className={`h-4.5 w-4.5 md:h-5 md:w-5 ${isFavorite ? "fill-blue-500 text-blue-600" : ""}`}
+                          className={cn("h-4.5 w-4.5 md:h-5 md:w-5", isFavorite && "fill-blue-500 text-blue-600")}
                         />
                       </button>
                     </div>
@@ -185,15 +188,16 @@ export default function ProductModal({
                       {[...Array(5)].map((_, i) => (
                         <Star
                           key={i}
-                          className={`h-3 w-3 md:h-4.5 md:w-4.5 ${
+                          className={cn(
+                            "h-3 w-3 md:h-4.5 md:w-4.5",
                             i < Math.floor(product.rating)
                               ? "fill-amber-400 text-amber-400"
                               : "text-zinc-300"
-                          }`}
+                          )}
                         />
                       ))}
                     </div>
-                    <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300 ml-1">
+                    <span className="text-xs font-bold text-zinc-700 ml-1">
                       {product.rating}
                     </span>
                     <span className="text-xs text-zinc-400">
@@ -201,16 +205,16 @@ export default function ProductModal({
                     </span>
                   </div>
 
-                  <div className="border-b border-zinc-100 dark:border-zinc-900 md:my-4 my-1" />
+                  <div className="border-b border-zinc-100 md:my-4 my-1" />
 
                   {/* Description text */}
-                  <p className="text-xs md:text-sm text-zinc-600 dark:text-zinc-300 md:leading-relaxed">
+                  <p className="text-xs md:text-sm text-zinc-600 md:leading-relaxed">
                     {product.description}
                   </p>
                 </div>
 
                 {/* Bottom Action buttons */}
-                <div className="mt-4 md:mt-8 pt-4 border-t border-zinc-100 dark:border-zinc-900 flex flex-col sm:flex-row gap-3">
+                <div className="mt-4 md:mt-8 pt-4 border-t border-zinc-100 flex flex-col sm:flex-row gap-3">
                   {/* Buy now trigger */}
                   <button
                     onClick={onBuyNow}
@@ -222,13 +226,14 @@ export default function ProductModal({
                   {/* Add to favorites trigger */}
                   <button
                     onClick={onToggleFavorite}
-                    className={`hidden md:flex py-3 px-6 rounded-full border font-bold text-sm items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all cursor-pointer ${
+                    className={cn(
+                      "hidden md:flex py-3 px-6 rounded-full border font-bold text-sm items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all cursor-pointer",
                       isFavorite
                         ? "bg-blue-500/10 text-blue-600 border-blue-500/30 hover:bg-blue-500/20"
                         : "bg-white text-zinc-700 border-zinc-200 hover:bg-zinc-50"
-                    }`}>
+                    )}>
                     <Heart
-                      className={`h-4.5 w-4.5 ${isFavorite ? "fill-blue-500 text-blue-600" : ""}`}
+                      className={cn("h-4.5 w-4.5", isFavorite && "fill-blue-500 text-blue-600")}
                     />
                     {isFavorite ? "Favorited" : "Add to Favourites"}
                   </button>

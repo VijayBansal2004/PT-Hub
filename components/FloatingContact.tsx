@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, MessageCircle, X } from "lucide-react";
+import { cn } from "@/app/utils/cn";
 
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -77,11 +78,12 @@ export default function FloatingContact() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Contact options"
-        className={`flex h-12 w-12 items-center justify-center rounded-full text-white shadow-lg cursor-pointer transition-all duration-300 active:scale-95 ${
+        className={cn(
+          "flex h-12 w-12 items-center justify-center rounded-full text-white shadow-lg cursor-pointer transition-all duration-300 active:scale-95",
           isOpen
             ? "bg-zinc-800 hover:bg-zinc-700 shadow-zinc-800/20"
             : "bg-blue-600 hover:bg-blue-500 shadow-blue-600/30 hover:scale-115"
-        }`}
+        )}
       >
         <AnimatePresence mode="wait">
           {isOpen ? (

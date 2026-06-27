@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Heart, Star, ArrowRight } from "lucide-react";
 import { Product } from "@/app/data";
+import { cn } from "@/app/utils/cn";
 
 interface ProductCardProps {
   product: Product;
@@ -43,7 +44,7 @@ export default function ProductCard({
         onClick={(e) => onToggleFavorite(product.id, e)}
         className="absolute top-5 right-5 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 border border-zinc-200/50 text-zinc-500 hover:text-zinc-900 shadow-sm hover:scale-110 active:scale-95 transition-all backdrop-blur-md cursor-pointer">
         <Heart
-          className={`h-4.5 w-4.5 transition-colors ${isFavorite ? "fill-red-500 text-red-500" : "text-zinc-500"}`}
+          className={cn("h-4.5 w-4.5 transition-colors", isFavorite ? "fill-red-500 text-red-500" : "text-zinc-500")}
         />
       </button>
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { cn } from "@/app/utils/cn";
 
 interface LogoProps {
   className?: string;
@@ -7,7 +8,7 @@ interface LogoProps {
 
 export default function Logo({ className = "", showText = true }: LogoProps) {
   return (
-    <div className={`flex items-center gap-3 select-none ${className}`}>
+    <div className={cn("flex items-center gap-3 select-none", className)}>
       {/* Sleek SVG monogram: Diamond + Tech Circuit (representing Jewellery & Useful Gadgets) */}
       <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-sky-400 via-blue-600 to-blue-800 text-white shadow-md shadow-blue-500/20 active:scale-95 transition-transform duration-200">
         <svg

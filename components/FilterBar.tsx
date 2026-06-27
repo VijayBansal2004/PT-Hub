@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, X, SlidersHorizontal, ChevronDown, Check } from "lucide-react";
+import { cn } from "@/app/utils/cn";
 
 interface FilterBarProps {
   searchQuery: string;
@@ -29,18 +30,19 @@ export default function FilterBar({
 
   return (
     <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-y border-zinc-200/50 dark:border-zinc-800/50 py-5">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-y border-zinc-200/50 py-5">
         {/* Category selection (Mobile only) */}
         <div className="flex md:hidden items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`flex-shrink-0 px-4 py-2 text-xs font-semibold rounded-full border transition-all cursor-pointer ${
+              className={cn(
+                "flex-shrink-0 px-4 py-2 text-xs font-semibold rounded-full border transition-all cursor-pointer",
                 selectedCategory === category
-                  ? "bg-zinc-900 text-white border-zinc-900 dark:bg-white dark:text-zinc-950 dark:border-white shadow-sm"
-                  : "bg-white text-zinc-600 border-zinc-200 dark:bg-zinc-900 dark:text-zinc-400 dark:border-zinc-800"
-              }`}>
+                  ? "bg-zinc-900 text-white border-zinc-900 shadow-sm"
+                  : "bg-white text-zinc-600 border-zinc-200"
+              )}>
               {category}
             </button>
           ))}
@@ -56,7 +58,7 @@ export default function FilterBar({
             value={searchQuery.trim() === "" ? "" : searchQuery}
             onChange={(e) => setSearchQuery(e.target.value || " ")}
             placeholder="Search premium products..."
-            className="block w-full rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 py-2.5 pl-10 pr-4 text-sm text-zinc-900 dark:text-white placeholder-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all shadow-sm"
+            className="block w-full rounded-full border border-zinc-200 bg-white py-2.5 pl-10 pr-4 text-sm text-zinc-900 placeholder-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all shadow-sm"
           />
           {searchQuery.trim() !== "" && (
             <button
@@ -71,16 +73,16 @@ export default function FilterBar({
         <div className="relative">
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="flex items-center gap-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-4 py-2.5 text-sm font-semibold text-zinc-700 dark:text-zinc-300 shadow-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all w-full sm:w-auto justify-between cursor-pointer">
+            className="flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-4 py-2.5 text-sm font-semibold text-zinc-700 shadow-sm hover:bg-zinc-50 transition-all w-full sm:w-auto justify-between cursor-pointer">
             <span className="flex items-center gap-1.5">
               <SlidersHorizontal className="h-4 w-4 text-blue-500" />
               Sort:{" "}
-              <span className="text-zinc-900 dark:text-white">
+              <span className="text-zinc-900">
                 {sortLabels[sortBy] || "Featured"}
               </span>
             </span>
             <ChevronDown
-              className={`h-4 w-4 text-zinc-500 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`}
+              className={cn("h-4 w-4 text-zinc-500 transition-transform duration-200", isDropdownOpen && "rotate-180")}
             />
           </button>
 
@@ -95,7 +97,7 @@ export default function FilterBar({
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  className="absolute right-0 mt-2 w-56 origin-top-right rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2 shadow-xl ring-1 ring-black/5 z-50 focus:outline-none">
+                  className="absolute right-0 mt-2 w-56 origin-top-right rounded-2xl border border-zinc-200 bg-white p-2 shadow-xl ring-1 ring-black/5 z-50 focus:outline-none">
                   {Object.entries(sortLabels).map(([key, label]) => (
                     <button
                       key={key}
@@ -103,11 +105,12 @@ export default function FilterBar({
                         setSortBy(key);
                         setIsDropdownOpen(false);
                       }}
-                      className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-sm font-medium transition-colors cursor-pointer ${
+                      className={cn(
+                        "flex w-full items-center justify-between rounded-xl px-3 py-2 text-sm font-medium transition-colors cursor-pointer",
                         sortBy === key
                           ? "bg-blue-500 text-white"
-                          : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                      }`}>
+                          : "text-zinc-700 hover:bg-zinc-100"
+                      )}>
                       {label}
                       {sortBy === key && <Check className="h-4 w-4" />}
                     </button>

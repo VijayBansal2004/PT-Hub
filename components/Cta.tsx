@@ -3,6 +3,7 @@
 import React from "react";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { toast } from "sonner";
+import { cn } from "@/app/utils/cn";
 
 interface CtaProps {
   title?: string;
@@ -19,7 +20,7 @@ const PlusIcon = ({ position }: { position: "top-left" | "top-right" | "bottom-l
     "bottom-right": "absolute -bottom-2.5 -right-2.5"
   };
   return (
-    <span className={`text-zinc-300 dark:text-zinc-800 text-base font-semibold select-none pointer-events-none z-10 ${classes[position]}`}>
+    <span className={cn("text-zinc-300 text-base font-semibold select-none pointer-events-none z-10", classes[position])}>
       +
     </span>
   );
@@ -41,7 +42,7 @@ export default function Cta({
 
   return (
     <section className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 py-12 font-sans">
-      <div className="relative mx-auto flex w-full flex-col justify-between gap-y-5 border-y border-zinc-200 dark:border-zinc-800 px-8 py-10 bg-white/40 dark:bg-zinc-950/20 backdrop-blur-sm dark:bg-[radial-gradient(35%_80%_at_25%_0%,rgba(99,102,241,0.06),transparent)]">
+      <div className="relative mx-auto flex w-full flex-col justify-between gap-y-5 border-y border-zinc-200 px-8 py-10 bg-white/40 backdrop-blur-sm">
         
         {/* Corner Plus Grid Accents */}
         <PlusIcon position="top-left" />
@@ -50,20 +51,20 @@ export default function Cta({
         <PlusIcon position="bottom-right" />
 
         {/* Layout Border Accents */}
-        <div className="pointer-events-none absolute -inset-y-6 -left-px w-px border-l border-zinc-200 dark:border-zinc-800/80" />
-        <div className="pointer-events-none absolute -inset-y-6 -right-px w-px border-r border-zinc-200 dark:border-zinc-800/80" />
-        <div className="absolute top-0 left-1/2 -z-10 h-full border-l border-dashed border-zinc-200/50 dark:border-zinc-800/25" />
+        <div className="pointer-events-none absolute -inset-y-6 -left-px w-px border-l border-zinc-200" />
+        <div className="pointer-events-none absolute -inset-y-6 -right-px w-px border-r border-zinc-200" />
+        <div className="absolute top-0 left-1/2 -z-10 h-full border-l border-dashed border-zinc-200/50" />
 
         <div className="flex flex-col items-center gap-1">
           <div className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-0.5 text-[10px] font-bold text-blue-600 border border-blue-200/10">
             <Sparkles className="h-3 w-3" /> PT HUB PRIVILEGES
           </div>
-          <h2 className="text-center font-extrabold text-2xl md:text-3xl text-zinc-900 dark:text-white tracking-tight mt-3">
+          <h2 className="text-center font-extrabold text-2xl md:text-3xl text-zinc-900 tracking-tight mt-3">
             {title}
           </h2>
         </div>
 
-        <p className="text-balance text-center text-sm md:text-base text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto leading-relaxed">
+        <p className="text-balance text-center text-sm md:text-base text-zinc-500 max-w-xl mx-auto leading-relaxed">
           {description}
         </p>
 
@@ -71,7 +72,7 @@ export default function Cta({
           {/* Secondary Link button */}
           <button
             onClick={() => toast("PT Hub Membership brochure requested.")}
-            className="px-5 py-2.5 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 font-semibold text-xs hover:bg-zinc-50 dark:hover:bg-zinc-850 active:scale-95 transition-all cursor-pointer bg-white/60 dark:bg-zinc-900/50"
+            className="px-5 py-2.5 rounded-full border border-zinc-200 text-zinc-700 font-semibold text-xs hover:bg-zinc-50 active:scale-95 transition-all cursor-pointer bg-white/60"
           >
             {secondaryBtnText}
           </button>

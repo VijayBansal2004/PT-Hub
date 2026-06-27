@@ -5,6 +5,7 @@ import { ShoppingBag, Heart } from "lucide-react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import Logo from "./Logo";
+import { cn } from "@/app/utils/cn";
 
 interface NavbarProps {
   selectedCategory?: string;
@@ -57,7 +58,10 @@ export default function Navbar({
                 />
               )}
               <span
-                className={`relative z-10 ${selectedCategory === category ? "text-blue-600 font-semibold" : "text-zinc-600 hover:text-zinc-900"}`}>
+                className={cn(
+                  "relative z-10",
+                  selectedCategory === category ? "text-blue-600 font-semibold" : "text-zinc-600 hover:text-zinc-900"
+                )}>
                 {category}
               </span>
             </button>
@@ -72,7 +76,7 @@ export default function Navbar({
             className="relative flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white hover:bg-zinc-100 transition-colors cursor-pointer"
             title="View Favorites">
             <Heart
-              className={`h-5 w-5 ${favoritesCount > 0 ? "fill-red-500 text-red-500" : "text-zinc-500"}`}
+              className={cn("h-5 w-5", favoritesCount > 0 ? "fill-red-500 text-red-500" : "text-zinc-500")}
             />
             {favoritesCount > 0 && (
               <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 text-[10px] font-bold text-white shadow-sm shadow-blue-600/30 animate-pulse">
