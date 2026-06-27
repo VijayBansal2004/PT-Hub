@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Heart, Star, ArrowRight } from "lucide-react";
+import { LuHeart, LuStar, LuArrowRight } from "react-icons/lu";
 import { Product } from "@/app/data";
 import { cn } from "@/app/utils/cn";
 
@@ -53,7 +53,7 @@ export default function ProductCard({
       <button
         onClick={(e) => onToggleFavorite(product.id, e)}
         className="absolute top-5 right-5 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 border border-zinc-200/50 text-zinc-500 hover:text-zinc-900 shadow-sm hover:scale-110 active:scale-95 transition-all backdrop-blur-md cursor-pointer">
-        <Heart
+        <LuHeart
           className={cn(
             "h-4.5 w-4.5 transition-colors",
             isFavorite ? "fill-red-500 text-red-500" : "text-zinc-500",
@@ -62,7 +62,7 @@ export default function ProductCard({
       </button>
 
       {/* Thumbnail Area - Inflected style */}
-      <div className="inflected-card-inner aspect-square w-full">
+      <div className="inflected-card-inner aspect-video md:aspect-square w-full">
         <div className="inflected-box">
           <div className="inflected-img-box">
             <Image
@@ -75,20 +75,11 @@ export default function ProductCard({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
-
-          {/* Inflected icon cutout button */}
-          <div className="inflected-icon">
-            <div className="inflected-icon-box">
-              <span className="inflected-icon-inner text-white">
-                <ArrowRight className="h-5 w-5" />
-              </span>
-            </div>
-          </div>
         </div>
       </div>
 
       {/* Product Content Details */}
-      <div className="mt-4 flex flex-1 flex-col px-1 pb-1 justify-between font-sans">
+      <div className="mt-2 md:mt-4 flex flex-1 flex-col px-1 pb-1 justify-between font-sans">
         <div>
           <span className="text-xs font-bold text-blue-500">
             {product.category}
@@ -99,7 +90,7 @@ export default function ProductCard({
 
           {/* Review Stats */}
           <div className="mt-1.5 flex items-center gap-1">
-            <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
+            <LuStar className="h-4 w-4 fill-amber-400 text-amber-400" />
             <span className="text-xs font-bold text-zinc-700">
               {product.rating}
             </span>

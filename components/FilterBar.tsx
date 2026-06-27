@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, X, SlidersHorizontal, ChevronDown, Check } from "lucide-react";
+import { LuSearch, LuX, LuSlidersHorizontal, LuChevronDown, LuCheck } from "react-icons/lu";
 import { cn } from "@/app/utils/cn";
 
 interface FilterBarProps {
@@ -51,7 +51,7 @@ export default function FilterBar({
         {/* Search Input field */}
         <div className="relative flex-1 max-w-md">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-            <Search className="h-4.5 w-4.5 text-zinc-400" />
+            <LuSearch className="h-4.5 w-4.5 text-zinc-400" />
           </div>
           <input
             type="text"
@@ -64,7 +64,7 @@ export default function FilterBar({
             <button
               onClick={() => setSearchQuery(" ")}
               className="absolute inset-y-0 right-0 flex items-center pr-3 text-zinc-400 hover:text-zinc-600 cursor-pointer">
-              <X className="h-4 w-4" />
+              <LuX className="h-4 w-4" />
             </button>
           )}
         </div>
@@ -75,13 +75,13 @@ export default function FilterBar({
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             className="flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-4 py-2.5 text-sm font-semibold text-zinc-700 shadow-sm hover:bg-zinc-50 transition-all w-full sm:w-auto justify-between cursor-pointer">
             <span className="flex items-center gap-1.5">
-              <SlidersHorizontal className="h-4 w-4 text-blue-500" />
+              <LuSlidersHorizontal className="h-4 w-4 text-blue-500" />
               Sort:{" "}
               <span className="text-zinc-900">
                 {sortLabels[sortBy] || "Featured"}
               </span>
             </span>
-            <ChevronDown
+            <LuChevronDown
               className={cn("h-4 w-4 text-zinc-500 transition-transform duration-200", isDropdownOpen && "rotate-180")}
             />
           </button>
@@ -112,7 +112,7 @@ export default function FilterBar({
                           : "text-zinc-700 hover:bg-zinc-100"
                       )}>
                       {label}
-                      {sortBy === key && <Check className="h-4 w-4" />}
+                      {sortBy === key && <LuCheck className="h-4 w-4" />}
                     </button>
                   ))}
                 </motion.div>

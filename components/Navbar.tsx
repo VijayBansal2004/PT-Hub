@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ShoppingBag, Heart } from "lucide-react";
+import { LuShoppingBag, LuHeart } from "react-icons/lu";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import Logo from "./Logo";
@@ -75,7 +75,7 @@ export default function Navbar({
             href="/favorites"
             className="relative flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white hover:bg-zinc-100 transition-colors cursor-pointer"
             title="View Favorites">
-            <Heart
+            <LuHeart
               className={cn("h-5 w-5", favoritesCount > 0 ? "fill-red-500 text-red-500" : "text-zinc-500")}
             />
             {favoritesCount > 0 && (

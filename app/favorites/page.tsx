@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
-import { ArrowLeft, Heart, ShoppingBag } from "lucide-react";
+import { LuArrowLeft, LuHeart, LuShoppingBag } from "react-icons/lu";
 import { Toaster, toast } from "sonner";
 import { Product } from "../data";
 import { getProducts } from "@/app/utils/products";
@@ -76,7 +76,7 @@ export default function FavoritesPage() {
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200/50 bg-white hover:bg-zinc-100 transition-colors cursor-pointer"
                 title="Back to Shop"
               >
-                <ArrowLeft className="h-5 w-5 text-zinc-600" />
+                <LuArrowLeft className="h-5 w-5 text-zinc-600" />
               </Link>
               <span className="bg-gradient-to-r from-zinc-900 to-zinc-600 bg-clip-text text-lg font-bold tracking-tight text-transparent">
                 Favourites Collection
@@ -106,7 +106,7 @@ export default function FavoritesPage() {
           {favoriteProducts.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-24 text-center border-2 border-dashed border-zinc-200 rounded-3xl p-12 bg-white/30 backdrop-blur-sm">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-100/50 text-blue-500 mb-6 relative">
-                <Heart className="h-8 w-8 fill-blue-500/20 animate-pulse" />
+                <LuHeart className="h-8 w-8 fill-blue-500/20 animate-pulse" />
                 <div className="absolute inset-0 rounded-full border border-blue-500/30 animate-ping" />
               </div>
               <h3 className="text-xl font-bold text-zinc-900">Your list is looking empty</h3>
@@ -117,7 +117,7 @@ export default function FavoritesPage() {
                 href="/products"
                 className="mt-6 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-bold text-white hover:bg-blue-500 transition-colors shadow-lg shadow-blue-600/30 cursor-pointer"
               >
-                <ShoppingBag className="h-4.5 w-4.5" />
+                <LuShoppingBag className="h-4.5 w-4.5" />
                 Explore Shop
               </Link>
             </div>

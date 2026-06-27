@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { Search, ChevronLeft, ChevronRight } from "lucide-react";
+import { LuSearch, LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import Navbar from "@/components/Navbar";
 import FilterBar from "@/components/FilterBar";
 import ProductCard from "@/components/ProductCard";
@@ -139,17 +139,18 @@ function ProductsContent() {
       />
 
       {/* Hero Header */}
-      <section className="relative overflow-hidden pt-12 pb-6 sm:pt-16 sm:pb-8">
+      <section className="relative overflow-hidden pt-6 pb-0 sm:pt-16 sm:pb-8">
         <div className="absolute inset-0 -z-10 flex items-center justify-center opacity-25 blur-3xl">
           <div className="h-72 w-72 rounded-full bg-sky-300 animate-pulse" />
           <div className="h-96 w-96 rounded-full bg-blue-600 ml-12 animate-bounce duration-10000" />
         </div>
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center">
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl bg-gradient-to-r from-zinc-900 via-blue-950 to-blue-800 bg-clip-text text-transparent">
+          <h1 className="text-lg font-semibold md:font-extrabold tracking-tight sm:text-5xl bg-gradient-to-r from-zinc-900 via-blue-950 to-blue-800 bg-clip-text text-transparent">
             Explore All Products
           </h1>
-          <p className="mt-2 max-w-xl text-lg text-zinc-500 mx-auto">
-            Browse our curated collection of useful smart Chinese imports, innovative daily utilities, and premium handcrafted jewellery.
+          <p className="mt-1 md:mt-2 max-w-xl text-sm md:text-lg text-zinc-500 mx-auto">
+            Browse our curated collection of useful smart Chinese imports,
+            innovative daily utilities, and premium handcrafted jewellery.
           </p>
         </div>
       </section>
@@ -167,11 +168,11 @@ function ProductsContent() {
       />
 
       {/* Product Grid listing */}
-      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 md:py-8 flex-grow w-full">
         {filteredProducts.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
             <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-400 mb-4">
-              <Search className="h-8 w-8" />
+              <LuSearch className="h-8 w-8" />
             </div>
             <h3 className="text-lg font-bold text-zinc-900">
               No products found
@@ -191,7 +192,7 @@ function ProductsContent() {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+          <div className="grid grid-cols-1 gap-y-6 md:gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
             {paginatedProducts.map((product) => (
               <ProductCard
                 key={product.id}
@@ -206,7 +207,7 @@ function ProductsContent() {
 
         {/* Pagination Controls bar */}
         {totalPages > 1 && (
-          <div className="mt-12 flex flex-col items-center justify-center gap-4 border-t border-zinc-200/50 pt-8 font-sans">
+          <div className="mt-6 md:mt-12 flex flex-col items-center justify-center gap-4 border-t border-zinc-200/50 pt-6 md:pt-8 font-sans">
             <div className="flex items-center gap-2">
               {/* Prev Page */}
               <button
@@ -217,7 +218,7 @@ function ProductsContent() {
                 }}
                 className="h-9 w-9 flex items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-500 transition-all cursor-pointer hover:bg-zinc-50 disabled:opacity-40 disabled:pointer-events-none active:scale-95"
                 title="Previous Page">
-                <ChevronLeft className="h-4.5 w-4.5" />
+                <LuChevronLeft className="h-4.5 w-4.5" />
               </button>
 
               {/* Number Buttons */}
@@ -260,7 +261,7 @@ function ProductsContent() {
                 }}
                 className="h-9 w-9 flex items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-500 transition-all cursor-pointer hover:bg-zinc-50 disabled:opacity-40 disabled:pointer-events-none active:scale-95"
                 title="Next Page">
-                <ChevronRight className="h-4.5 w-4.5" />
+                <LuChevronRight className="h-4.5 w-4.5" />
               </button>
             </div>
 
@@ -287,7 +288,8 @@ function ProductsContent() {
         onBuyNow={() => {
           if (selectedProduct) {
             const message = `Hello! I would like to purchase the *${selectedProduct.name}* (${selectedProduct.category}) for *$${selectedProduct.price.toFixed(2)}*.`;
-            const whatsappNum = process.env.NEXT_PUBLIC_CONTACT_WHATSAPP || "919417212422";
+            const whatsappNum =
+              process.env.NEXT_PUBLIC_CONTACT_WHATSAPP || "919417212422";
             const whatsappUrl = `https://wa.me/${whatsappNum}?text=${encodeURIComponent(message)}`;
             toast.success("Redirecting to WhatsApp Checkout...", {
               description: `Opening chat to buy ${selectedProduct.name}.`,

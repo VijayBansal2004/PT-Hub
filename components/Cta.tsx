@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Sparkles, Phone, MessageSquare } from "lucide-react";
+import { LuSparkles, LuPhone, LuMessageSquare } from "react-icons/lu";
 import { cn } from "@/app/utils/cn";
 
 interface CtaProps {
@@ -56,7 +56,7 @@ export default function Cta({
 
         <div className="flex flex-col items-center gap-1">
           <div className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-0.5 text-[10px] font-bold text-blue-600 border border-blue-200/10">
-            <Sparkles className="h-3 w-3" /> PT HUB PRIVILEGES
+            <LuSparkles className="h-3 w-3" /> PT HUB PRIVILEGES
           </div>
           <h2 className="text-center font-extrabold text-2xl md:text-3xl text-zinc-900 tracking-tight mt-3">
             {title}
@@ -73,7 +73,7 @@ export default function Cta({
             href={`tel:${cleanPhone}`}
             className="px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-md shadow-blue-600/30 hover:shadow-blue-600/50 flex items-center gap-1.5 active:scale-95 transition-all cursor-pointer"
           >
-            <Phone className="h-3.5 w-3.5" />
+            <LuPhone className="h-3.5 w-3.5" />
             <span>Call now!</span>
           </a>
 
@@ -84,7 +84,7 @@ export default function Cta({
             rel="noopener noreferrer"
             className="px-5 py-2.5 rounded-full border border-zinc-200 text-zinc-700 font-semibold text-xs hover:bg-zinc-50 active:scale-95 transition-all cursor-pointer bg-white/60 flex items-center gap-1.5 shadow-sm"
           >
-            <MessageSquare className="h-3.5 w-3.5 text-blue-500" />
+            <LuMessageSquare className="h-3.5 w-3.5 text-blue-500" />
             <span>Connect with us!</span>
           </a>
         </div>
