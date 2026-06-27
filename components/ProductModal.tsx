@@ -94,7 +94,7 @@ export default function ProductModal({
                   {/* Video & Category Badges */}
                   <div className="absolute top-3 left-3 z-20 flex flex-wrap gap-2 pointer-events-none">
                     {/* Category Badge (Mobile Only) */}
-                    <span className="inline-flex md:hidden items-center rounded-full bg-indigo-600 px-3 py-1.5 text-[10px] font-semibold md:font-bold text-white shadow-lg shadow-indigo-600/30">
+                    <span className="inline-flex md:hidden items-center rounded-full bg-blue-600 px-3 py-1.5 text-[10px] font-semibold md:font-bold text-white shadow-lg shadow-blue-600/30">
                       {product.category}
                     </span>
                   </div>
@@ -146,7 +146,7 @@ export default function ProductModal({
               <div className="w-full md:w-1/2 p-3 md:p-8 flex flex-col justify-between overflow-y-auto max-h-[45vh] md:max-h-full font-sans">
                 <div>
                   {/* Category Tag */}
-                  <span className="hidden md:inline-flex items-center rounded-full bg-indigo-50 dark:bg-indigo-950/50 px-2.5 py-0.5 text-xs font-semibold text-indigo-600 dark:text-indigo-400 border border-indigo-200/10">
+                  <span className="hidden md:inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-600 border border-blue-200/10">
                     {product.category}
                   </span>
 
@@ -156,7 +156,7 @@ export default function ProductModal({
                       {product.name}
                     </h2>
                     <div className="flex items-center gap-3 shrink-0">
-                      <span className="text-xl md:text-2xl font-bold md:font-black text-indigo-600 dark:text-indigo-400">
+                      <span className="text-xl md:text-2xl font-bold md:font-black text-blue-600">
                         ₹{product.price.toFixed(2)}
                       </span>
                       {/* Favorite Button next to Price */}
@@ -164,8 +164,8 @@ export default function ProductModal({
                         onClick={onToggleFavorite}
                         className={`inline-block md:hidden p-2 rounded-full border transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer ${
                           isFavorite
-                            ? "bg-pink-500/10 text-pink-500 border-pink-500/30"
-                            : "bg-zinc-50 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500 border-zinc-200 dark:border-zinc-800 hover:text-zinc-600 dark:hover:text-zinc-400"
+                            ? "bg-blue-500/10 text-blue-600 border-blue-500/30"
+                            : "bg-zinc-50 text-zinc-400 border-zinc-200 hover:text-zinc-600"
                         }`}
                         aria-label={
                           isFavorite
@@ -173,7 +173,7 @@ export default function ProductModal({
                             : "Add to favorites"
                         }>
                         <Heart
-                          className={`h-4.5 w-4.5 md:h-5 md:w-5 ${isFavorite ? "fill-pink-500 text-pink-500" : ""}`}
+                          className={`h-4.5 w-4.5 md:h-5 md:w-5 ${isFavorite ? "fill-blue-500 text-blue-600" : ""}`}
                         />
                       </button>
                     </div>
@@ -187,8 +187,8 @@ export default function ProductModal({
                           key={i}
                           className={`h-3 w-3 md:h-4.5 md:w-4.5 ${
                             i < Math.floor(product.rating)
-                              ? "fill-amber-400 text-amber-400"
-                              : "text-zinc-300 dark:text-zinc-750"
+                              ? "fill-blue-500 text-blue-500"
+                              : "text-zinc-300"
                           }`}
                         />
                       ))}
@@ -214,7 +214,7 @@ export default function ProductModal({
                   {/* Buy now trigger */}
                   <button
                     onClick={onBuyNow}
-                    className="flex-1 py-3 px-6 rounded-full bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white font-bold text-sm shadow-lg shadow-indigo-600/30 hover:shadow-indigo-600/50 hover:scale-[1.02] active:scale-95 transition-all text-center flex items-center justify-center gap-2 cursor-pointer">
+                    className="flex-1 py-3 px-6 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold text-sm shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:scale-[1.02] active:scale-95 transition-all text-center flex items-center justify-center gap-2 cursor-pointer">
                     <ShoppingBag className="h-4.5 w-4.5" />
                     Buy Now
                   </button>
@@ -224,11 +224,11 @@ export default function ProductModal({
                     onClick={onToggleFavorite}
                     className={`hidden md:flex py-3 px-6 rounded-full border font-bold text-sm items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all cursor-pointer ${
                       isFavorite
-                        ? "bg-pink-500/10 text-pink-500 border-pink-500/30 hover:bg-pink-500/20"
-                        : "bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                        ? "bg-blue-500/10 text-blue-600 border-blue-500/30 hover:bg-blue-500/20"
+                        : "bg-white text-zinc-700 border-zinc-200 hover:bg-zinc-50"
                     }`}>
                     <Heart
-                      className={`h-4.5 w-4.5 ${isFavorite ? "fill-pink-500 text-pink-500" : ""}`}
+                      className={`h-4.5 w-4.5 ${isFavorite ? "fill-blue-500 text-blue-600" : ""}`}
                     />
                     {isFavorite ? "Favorited" : "Add to Favourites"}
                   </button>

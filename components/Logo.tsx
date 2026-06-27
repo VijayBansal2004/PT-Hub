@@ -9,7 +9,7 @@ export default function Logo({ className = "", showText = true }: LogoProps) {
   return (
     <div className={`flex items-center gap-3 select-none ${className}`}>
       {/* Sleek SVG monogram: Diamond + Tech Circuit (representing Jewellery & Useful Gadgets) */}
-      <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-amber-500 via-indigo-600 to-indigo-800 text-white shadow-md shadow-indigo-500/20 active:scale-95 transition-transform duration-200">
+      <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-sky-400 via-blue-600 to-blue-800 text-white shadow-md shadow-blue-500/20 active:scale-95 transition-transform duration-200">
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -49,12 +49,12 @@ export default function Logo({ className = "", showText = true }: LogoProps) {
             strokeLinejoin="round"
           />
         </svg>
-        <div className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-amber-400 animate-pulse" />
+        <div className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-sky-400 animate-pulse" />
       </div>
       
       {showText && (
         <span className="font-extrabold tracking-tight text-xl bg-gradient-to-r from-zinc-900 to-zinc-700 bg-clip-text text-transparent font-sans">
-          PT <span className="text-indigo-600 font-semibold">Hub</span>
+          PT <span className="text-blue-600 font-semibold">Hub</span>
         </span>
       )}
     </div>

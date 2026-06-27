@@ -76,7 +76,7 @@ export default function Home() {
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-12">
             <div>
-              <div className="inline-flex items-center gap-1.5 rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-600 border border-indigo-200/20 mb-3">
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600 border border-blue-200/20 mb-3">
                 <span>New Arrivals</span>
               </div>
               <h2 className="text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl">
@@ -88,7 +88,7 @@ export default function Home() {
             </div>
             <Link
               href="/products"
-              className="mt-6 sm:mt-0 inline-flex items-center gap-2 rounded-full bg-indigo-600 px-6 py-3 text-sm font-bold text-white hover:bg-indigo-500 transition-colors shadow-lg shadow-indigo-600/20 cursor-pointer self-start"
+              className="mt-6 sm:mt-0 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-bold text-white hover:bg-blue-500 transition-colors shadow-lg shadow-blue-600/20 cursor-pointer self-start"
             >
               <span>Explore All Products</span>
               <ArrowRight className="h-4 w-4" />
@@ -113,7 +113,7 @@ export default function Home() {
               href="/products"
               className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white hover:bg-zinc-100 px-8 py-4 text-base font-semibold text-zinc-700 transition-all cursor-pointer hover:scale-105 active:scale-95 shadow-sm"
             >
-              <ShoppingBag className="h-5 w-5 text-indigo-600" />
+              <ShoppingBag className="h-5 w-5 text-blue-600" />
               <span>View Full Catalog ({PRODUCTS.length} items)</span>
             </Link>
           </div>

@@ -84,11 +84,11 @@ export default function FavoritesPage() {
         {/* Hero Title */}
         <section className="relative overflow-hidden pt-12 pb-6 sm:pt-16 sm:pb-8">
           <div className="absolute inset-0 -z-10 flex items-center justify-center opacity-25 blur-3xl">
-            <div className="h-72 w-72 rounded-full bg-pink-500 animate-pulse" />
-            <div className="h-96 w-96 rounded-full bg-indigo-600 ml-12 animate-bounce duration-10000" />
+            <div className="h-72 w-72 rounded-full bg-sky-300 animate-pulse" />
+            <div className="h-96 w-96 rounded-full bg-blue-600 ml-12 animate-bounce duration-10000" />
           </div>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center sm:text-left">
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl bg-gradient-to-r from-zinc-900 via-indigo-950 to-pink-900 bg-clip-text text-transparent">
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl bg-gradient-to-r from-zinc-900 via-blue-950 to-blue-800 bg-clip-text text-transparent">
               Your Loved Items
             </h1>
             <p className="mt-2 max-w-xl text-lg text-zinc-500">
@@ -101,9 +101,9 @@ export default function FavoritesPage() {
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
           {favoriteProducts.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-24 text-center border-2 border-dashed border-zinc-200 rounded-3xl p-12 bg-white/30 backdrop-blur-sm">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-pink-100/50 text-pink-500 mb-6 relative">
-                <Heart className="h-8 w-8 fill-pink-500/20 animate-pulse" />
-                <div className="absolute inset-0 rounded-full border border-pink-500/30 animate-ping" />
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-100/50 text-blue-500 mb-6 relative">
+                <Heart className="h-8 w-8 fill-blue-500/20 animate-pulse" />
+                <div className="absolute inset-0 rounded-full border border-blue-500/30 animate-ping" />
               </div>
               <h3 className="text-xl font-bold text-zinc-900">Your list is looking empty</h3>
               <p className="mt-2 text-sm text-zinc-500 max-w-sm">
@@ -111,7 +111,7 @@ export default function FavoritesPage() {
               </p>
               <Link
                 href="/products"
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-indigo-600 px-6 py-3 text-sm font-bold text-white hover:bg-indigo-500 transition-colors shadow-lg shadow-indigo-600/30 cursor-pointer"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-bold text-white hover:bg-blue-500 transition-colors shadow-lg shadow-blue-600/30 cursor-pointer"
               >
                 <ShoppingBag className="h-4.5 w-4.5" />
                 Explore Shop

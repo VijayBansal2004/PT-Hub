@@ -83,7 +83,7 @@ export default function Testimonials() {
   return (
     <section className="w-full py-16 bg-zinc-50/50 dark:bg-zinc-950/20 border-t border-zinc-200/30 dark:border-zinc-800/30 overflow-hidden font-sans">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 text-center sm:text-left">
-        <div className="inline-flex items-center gap-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/50 px-3 py-1 text-xs font-semibold text-indigo-600 dark:text-indigo-400 border border-indigo-200/20">
+        <div className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600 border border-blue-200/20">
           <MessageSquare className="h-3.5 w-3.5" /> Customer Stories
         </div>
         <h2 className="mt-3 font-extrabold text-3xl md:text-4xl text-zinc-900 dark:text-white tracking-tight">
@@ -126,10 +126,10 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-0.5">
             {[...Array(testimonial.rating)].map((_, i) => (
-              <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
+              <Star key={i} className="h-4 w-4 fill-blue-500 text-blue-500" />
             ))}
           </div>
-          <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded-full border border-indigo-500/10">
+          <span className="text-[10px] font-bold text-blue-600 bg-blue-500/10 px-2 py-0.5 rounded-full border border-blue-500/10">
             {testimonial.itemBought}
           </span>
         </div>

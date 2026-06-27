@@ -30,23 +30,23 @@ export default function FloatingContact() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="flex flex-col gap-2.5 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md p-3 rounded-2xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-xl w-60 origin-bottom-right"
+            className="flex flex-col gap-2.5 bg-white/80 backdrop-blur-md p-3 rounded-2xl border border-zinc-200/50 shadow-xl w-60 origin-bottom-right"
           >
-            <span className="text-[10px] font-bold tracking-wider text-zinc-400 dark:text-zinc-500 uppercase px-1">
+            <span className="text-[10px] font-bold tracking-wider text-zinc-400 uppercase px-1">
               Contact Us
             </span>
 
             {/* Call Option */}
             <a
               href={`tel:${demoCallNumber.replace(/\s+/g, "")}`}
-              className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-950/30 text-zinc-700 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer group"
+              className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-blue-50 text-zinc-700 hover:text-blue-600 transition-colors cursor-pointer group"
             >
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-500/10 text-indigo-500 group-hover:scale-105 transition-transform">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-500/10 text-blue-500 group-hover:scale-105 transition-transform">
                 <Phone className="h-4.5 w-4.5" />
               </div>
               <div className="flex flex-col">
                 <span className="text-xs font-bold leading-tight">Call Support</span>
-                <span className="text-[11px] text-zinc-400 dark:text-zinc-500 mt-0.5">
+                <span className="text-[11px] text-zinc-400 mt-0.5">
                   {demoCallNumber}
                 </span>
               </div>
@@ -57,14 +57,14 @@ export default function FloatingContact() {
               href={`https://wa.me/${demoWhatsAppNumber.replace(/[^0-9]/g, "")}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-950/30 text-zinc-700 dark:text-zinc-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors cursor-pointer group"
+              className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-blue-50 text-zinc-700 hover:text-blue-600 transition-colors cursor-pointer group"
             >
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-500 group-hover:scale-105 transition-transform">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-500/10 text-blue-500 group-hover:scale-105 transition-transform">
                 <WhatsAppIcon className="h-4.5 w-4.5" />
               </div>
               <div className="flex flex-col">
                 <span className="text-xs font-bold leading-tight">WhatsApp Us</span>
-                <span className="text-[11px] text-zinc-400 dark:text-zinc-500 mt-0.5">
+                <span className="text-[11px] text-zinc-400 mt-0.5">
                   {demoWhatsAppNumber}
                 </span>
               </div>
@@ -79,8 +79,8 @@ export default function FloatingContact() {
         aria-label="Contact options"
         className={`flex h-12 w-12 items-center justify-center rounded-full text-white shadow-lg cursor-pointer transition-all duration-300 active:scale-95 ${
           isOpen
-            ? "bg-zinc-800 hover:bg-zinc-700 dark:bg-zinc-700 dark:hover:bg-zinc-600 shadow-zinc-800/20"
-            : "bg-indigo-600 hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400 shadow-indigo-600/30 hover:scale-115"
+            ? "bg-zinc-800 hover:bg-zinc-700 shadow-zinc-800/20"
+            : "bg-blue-600 hover:bg-blue-500 shadow-blue-600/30 hover:scale-115"
         }`}
       >
         <AnimatePresence mode="wait">

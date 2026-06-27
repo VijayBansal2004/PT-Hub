@@ -109,11 +109,11 @@ function ProductsContent() {
       {/* Hero Header */}
       <section className="relative overflow-hidden pt-12 pb-6 sm:pt-16 sm:pb-8">
         <div className="absolute inset-0 -z-10 flex items-center justify-center opacity-25 blur-3xl">
-          <div className="h-72 w-72 rounded-full bg-pink-500 animate-pulse" />
-          <div className="h-96 w-96 rounded-full bg-indigo-600 ml-12 animate-bounce duration-10000" />
+          <div className="h-72 w-72 rounded-full bg-sky-300 animate-pulse" />
+          <div className="h-96 w-96 rounded-full bg-blue-600 ml-12 animate-bounce duration-10000" />
         </div>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center sm:text-left">
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl bg-gradient-to-r from-zinc-900 via-indigo-950 to-pink-900 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl bg-gradient-to-r from-zinc-900 via-blue-950 to-blue-800 bg-clip-text text-transparent">
             Explore All Products
           </h1>
           <p className="mt-2 max-w-xl text-lg text-zinc-500">
@@ -154,7 +154,7 @@ function ProductsContent() {
                 setSelectedCategory("All");
                 setSortBy("default");
               }}
-              className="mt-4 rounded-full bg-indigo-600 px-4 py-2 text-xs font-semibold text-white hover:bg-indigo-500 transition-colors cursor-pointer">
+              className="mt-4 rounded-full bg-blue-600 px-4 py-2 text-xs font-semibold text-white hover:bg-blue-500 transition-colors cursor-pointer">
               Reset all filters
             </button>
           </div>
@@ -219,7 +219,7 @@ export default function ProductsPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center bg-zinc-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
       </div>
     }>
       <ProductsContent />
