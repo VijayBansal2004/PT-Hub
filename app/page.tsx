@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import { Search } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ShoppingBag } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import FilterBar from "@/components/FilterBar";
 import ProductCard from "@/components/ProductCard";
 import ProductModal from "@/components/ProductModal";
 import Footer from "@/components/Footer";
@@ -16,14 +16,10 @@ import { Toaster, toast } from "sonner";
 import { PRODUCTS, Product } from "./data";
 
 export default function Home() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
-  const [sortBy, setSortBy] = useState<string>("default");
-  const [searchQuery, setSearchQuery] = useState<string>(" ");
   const [favorites, setFavorites] = useState<string[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [darkMode, setDarkMode] = useState<boolean>(true);
 
-  // Initialize client-side favorites and theme preferences
+  // Initialize client-side favorites
   useEffect(() => {
     const savedFavs = localStorage.getItem("aura-favorites");
     if (savedFavs) {
@@ -38,22 +34,7 @@ export default function Home() {
         console.error("Error loading favorites", e);
       }
     }
-    const savedTheme = localStorage.getItem("aura-theme");
-    if (savedTheme === "light") {
-      setTimeout(() => {
-        setDarkMode(false);
-      }, 0);
-    }
   }, []);
-
-  // Synchronize darkMode class on document.documentElement
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
 
   const toggleFavorite = (productId: string, e?: React.MouseEvent) => {
     if (e) {
@@ -75,107 +56,67 @@ export default function Home() {
     localStorage.setItem("aura-favorites", JSON.stringify(updated));
   };
 
-  const toggleTheme = () => {
-    const nextMode = !darkMode;
-    setDarkMode(nextMode);
-    localStorage.setItem("aura-theme", nextMode ? "dark" : "light");
-  };
-
-  const categories = ["All", "Utilities", "Jewellery", "Dresses"];
-
-  const sortLabels: Record<string, string> = {
-    default: "Featured",
-    "price-asc": "Price: Low to High",
-    "price-desc": "Price: High to Low",
-    rating: "Highest Rating",
-    reviews: "Most Reviewed",
-  };
-
-  // Filter & Sort products using memoization and standard array methods (map and filter)
-  const filteredProducts = useMemo(() => {
-    return PRODUCTS.filter((product) => {
-      const matchesCategory =
-        selectedCategory === "All" || product.category === selectedCategory;
-      const matchesSearch =
-        product.name.toLowerCase().includes(searchQuery.trim().toLowerCase()) ||
-        product.description
-          .toLowerCase()
-          .includes(searchQuery.trim().toLowerCase());
-      return matchesCategory && matchesSearch;
-    }).sort((a, b) => {
-      if (sortBy === "price-asc") return a.price - b.price;
-      if (sortBy === "price-desc") return b.price - a.price;
-      if (sortBy === "rating") return b.rating - a.rating;
-      if (sortBy === "reviews") return b.reviewsCount - a.reviewsCount;
-      return 0;
-    });
-  }, [selectedCategory, sortBy, searchQuery]);
+  // Get the latest top 6 products (using isNew and slicing to 6)
+  const latestProducts = useMemo(() => {
+    return PRODUCTS.filter((product) => product.isNew).slice(0, 6);
+  }, []);
 
   return (
-    <div className={`${darkMode ? "dark animate-fade-in" : "animate-fade-in"}`}>
-      <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50 transition-colors duration-300 font-sans">
+    <div className="animate-fade-in">
+      <div className="min-h-screen bg-zinc-50 text-zinc-900 transition-colors duration-300 font-sans">
         {/* Navigation bar component */}
         <Navbar
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-          categories={categories}
           favoritesCount={favorites.length}
-          darkMode={darkMode}
-          toggleTheme={toggleTheme}
         />
 
         {/* Hero marketing banner component */}
         <Hero />
 
-        {/* Filter and sorting control bar component */}
-        <FilterBar
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-          categories={categories}
-          sortBy={sortBy}
-          setSortBy={setSortBy}
-          sortLabels={sortLabels}
-        />
-
-        {/* Product Grid listing */}
-        <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-          {filteredProducts.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-20 text-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-600 mb-4">
-                <Search className="h-8 w-8" />
+        {/* Latest Arrivals section */}
+        <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-12">
+            <div>
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-600 border border-indigo-200/20 mb-3">
+                <span>New Arrivals</span>
               </div>
-              <h3 className="text-lg font-bold text-zinc-900 dark:text-white">
-                No products found
-              </h3>
-              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400 max-w-xs">
-                We couldn&apos;t find any premium products matching &quot;
-                {searchQuery.trim()}&quot; in category {selectedCategory}.
+              <h2 className="text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl">
+                Latest Arrivals
+              </h2>
+              <p className="mt-3 text-lg text-zinc-500 max-w-2xl">
+                Experience our newest additions crafted from top-tier materials and cutting-edge designs.
               </p>
-              <button
-                onClick={() => {
-                  setSearchQuery(" ");
-                  setSelectedCategory("All");
-                  setSortBy("default");
-                }}
-                className="mt-4 rounded-full bg-indigo-600 px-4 py-2 text-xs font-semibold text-white hover:bg-indigo-500 transition-colors cursor-pointer">
-                Reset all filters
-              </button>
             </div>
-          ) : (
-            <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-              {filteredProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  isFavorite={favorites.includes(product.id)}
-                  onToggleFavorite={toggleFavorite}
-                  onClick={() => setSelectedProduct(product)}
-                />
-              ))}
-            </div>
-          )}
+            <Link
+              href="/products"
+              className="mt-6 sm:mt-0 inline-flex items-center gap-2 rounded-full bg-indigo-600 px-6 py-3 text-sm font-bold text-white hover:bg-indigo-500 transition-colors shadow-lg shadow-indigo-600/20 cursor-pointer self-start"
+            >
+              <span>Explore All Products</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+            {latestProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                isFavorite={favorites.includes(product.id)}
+                onToggleFavorite={toggleFavorite}
+                onClick={() => setSelectedProduct(product)}
+              />
+            ))}
+          </div>
+
+          {/* Centered secondary CTA button */}
+          <div className="mt-16 text-center">
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white hover:bg-zinc-100 px-8 py-4 text-base font-semibold text-zinc-700 transition-all cursor-pointer hover:scale-105 active:scale-95 shadow-sm"
+            >
+              <ShoppingBag className="h-5 w-5 text-indigo-600" />
+              <span>View Full Catalog ({PRODUCTS.length} items)</span>
+            </Link>
+          </div>
         </main>
 
         {/* Media-rich layout-animated details popup modal component */}
@@ -223,7 +164,7 @@ export default function Home() {
         <Toaster
           richColors
           position="bottom-right"
-          theme={darkMode ? "dark" : "light"}
+          theme="light"
         />
       </div>
     </div>

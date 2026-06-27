@@ -1,22 +1,8 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-.dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
 }
 
 @theme inline {
@@ -58,11 +44,7 @@ body {
   --button-hover-bg: #4338ca;
 }
 
-.dark .inflected-card {
-  --parent-bg: #18181b; /* matches dark:bg-zinc-900 base color */
-  --button-bg: #6366f1;
-  --button-hover-bg: #4f46e5;
-}
+
 
 .inflected-card-inner {
   position: relative;
@@ -133,9 +115,6 @@ body {
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
 }
 
-.dark .inflected-icon-box {
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
-}
 
 .inflected-icon-box:hover {
   background-color: var(--button-hover-bg);
@@ -143,9 +122,6 @@ body {
   box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4);
 }
 
-.dark .inflected-icon-box:hover {
-  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
-}
 
 .inflected-icon-inner {
   display: flex;
