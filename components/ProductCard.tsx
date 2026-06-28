@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { LuHeart, LuStar, LuArrowRight } from "react-icons/lu";
 import { Product } from "@/app/data";
@@ -65,13 +64,12 @@ export default function ProductCard({
       <div className="inflected-card-inner aspect-video md:aspect-square w-full">
         <div className="inflected-box">
           <div className="inflected-img-box">
-            <Image
-              src={product.image}
-              alt={product.name}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-              className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
-              priority={product.isPopular || product.isNew}
+            <video
+              src={`${product.video}#t=0.1`}
+              preload="metadata"
+              playsInline
+              muted
+              className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
@@ -103,7 +101,7 @@ export default function ProductCard({
         {/* Footer Area with Price */}
         <div className="mt-4 flex items-center justify-between border-t border-zinc-100 pt-3">
           <span className="text-lg font-extrabold text-zinc-900">
-            ${product.price.toFixed(2)}
+            ₹{product.price.toFixed(2)}
           </span>
         </div>
       </div>

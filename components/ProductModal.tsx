@@ -39,7 +39,7 @@ export default function ProductModal({
   // Sync internal state when product changes
   useEffect(() => {
     if (product) {
-      setIsVideoMuted(true);
+      setIsVideoMuted(false);
       setIsVideoPlaying(true);
     }
   }, [product]);
@@ -116,7 +116,7 @@ export default function ProductModal({
                         "flex h-16 w-16 items-center justify-center rounded-full bg-black/50 hover:bg-black/70 text-white backdrop-blur-md transition-all duration-300 shadow-2xl border border-white/10 cursor-pointer pointer-events-auto hover:scale-110 active:scale-95",
                         isVideoPlaying
                           ? "opacity-0 group-hover/video:opacity-100 scale-90 group-hover/video:scale-100"
-                          : "opacity-100 scale-100"
+                          : "opacity-100 scale-100",
                       )}
                       aria-label={
                         isVideoPlaying ? "Pause video" : "Play video"
@@ -168,7 +168,7 @@ export default function ProductModal({
                           "inline-block md:hidden p-2 rounded-full border transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer",
                           isFavorite
                             ? "bg-blue-500/10 text-blue-600 border-blue-500/30"
-                            : "bg-zinc-50 text-zinc-400 border-zinc-200 hover:text-zinc-600"
+                            : "bg-zinc-50 text-zinc-400 border-zinc-200 hover:text-zinc-600",
                         )}
                         aria-label={
                           isFavorite
@@ -176,7 +176,10 @@ export default function ProductModal({
                             : "Add to favorites"
                         }>
                         <LuHeart
-                          className={cn("h-4.5 w-4.5 md:h-5 md:w-5", isFavorite && "fill-blue-500 text-blue-600")}
+                          className={cn(
+                            "h-4.5 w-4.5 md:h-5 md:w-5",
+                            isFavorite && "fill-blue-500 text-blue-600",
+                          )}
                         />
                       </button>
                     </div>
@@ -192,7 +195,7 @@ export default function ProductModal({
                             "h-3 w-3 md:h-4.5 md:w-4.5",
                             i < Math.floor(product.rating)
                               ? "fill-amber-400 text-amber-400"
-                              : "text-zinc-300"
+                              : "text-zinc-300",
                           )}
                         />
                       ))}
@@ -230,10 +233,13 @@ export default function ProductModal({
                       "hidden md:flex py-3 px-6 rounded-full border font-bold text-sm items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all cursor-pointer",
                       isFavorite
                         ? "bg-blue-500/10 text-blue-600 border-blue-500/30 hover:bg-blue-500/20"
-                        : "bg-white text-zinc-700 border-zinc-200 hover:bg-zinc-50"
+                        : "bg-white text-zinc-700 border-zinc-200 hover:bg-zinc-50",
                     )}>
                     <LuHeart
-                      className={cn("h-4.5 w-4.5", isFavorite && "fill-blue-500 text-blue-600")}
+                      className={cn(
+                        "h-4.5 w-4.5",
+                        isFavorite && "fill-blue-500 text-blue-600",
+                      )}
                     />
                     {isFavorite ? "Favorited" : "Add to Favourites"}
                   </button>
